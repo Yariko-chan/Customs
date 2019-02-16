@@ -6,20 +6,11 @@
 <fmt:setLocale value="${language}" scope="session"/>
 <fmt:setBundle basename="main.resources.text"  />
 
-<!DOCTYPE html>
-<html lang="${language}">
+<html>
 <head>
     <title><fmt:message key="title"/></title>
-  </head>
-  <body>
-
-  <fmt:message key="login.welcome" /> <Br>
-
-  <form action="login" method = "POST" target = "_parent">
-    <fmt:message key="login.login" /> <input type="text" name="login" /> <Br>
-    <fmt:message key="login.password" /> <input type="password" name="password" /> <Br>
-    <fmt:message key="login.submit" var="submit"/><input type="submit" value="${submit}"> <Br>
-  </form>
-
-  </body>
+</head>
+<body>
+ Welcome
+</body>
 </html>
