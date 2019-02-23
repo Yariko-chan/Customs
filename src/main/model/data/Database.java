@@ -1,7 +1,7 @@
-package main.data;
+package main.model.data;
 
-import main.models.DbResult;
-import main.models.User;
+import main.model.entities.DbResult;
+import main.model.entities.User;
 
 public class Database {
 

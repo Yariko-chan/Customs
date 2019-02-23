@@ -1,4 +1,4 @@
-package main.models;
+package main.model.entities;
 
 public enum UserType {
     ADMIN, USER;

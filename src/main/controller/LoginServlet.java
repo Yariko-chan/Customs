@@ -1,19 +1,18 @@
-package main.servlets;
+package main.controller;
 
-import main.data.Database;
-import main.models.DbResult;
-import main.models.User;
-import main.models.UserType;
+import main.model.data.Database;
+import main.model.entities.DbResult;
+import main.model.entities.User;
+import main.model.entities.UserType;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "login", urlPatterns = {"/login"})
-public class Login extends HttpServlet {
+public class LoginServlet extends BaseServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }

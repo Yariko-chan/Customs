@@ -8,16 +8,9 @@
 
 <html>
 <head>
-    <title><fmt:message key="title"/></title>
+    <title><fmt:message key="companies.title"/></title>
 </head>
 <body>
-
-    <form action="${pageContext.request.contextPath}/individuals.jsp">
-        <input type="submit" value=<fmt:message key="individuals.title"/> />
-    </form>
-    <form action="${pageContext.request.contextPath}/companies.jsp">
-        <input type="submit" value=<fmt:message key="companies.title"/> />
-    </form>
 
 </body>
 </html>

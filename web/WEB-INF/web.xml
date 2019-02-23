@@ -4,4 +4,48 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
+    <listener>
+        <listener-class>main.ContextCallbackListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>individuals</servlet-name>
+        <jsp-file>/individuals.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>individuals</servlet-name>
+        <url-pattern>/individuals/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>individuals_new</servlet-name>
+        <jsp-file>/individuals_new.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>individuals_new</servlet-name>
+        <url-pattern>/individuals/new/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>individuals_view</servlet-name>
+        <jsp-file>/individuals_view.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>individuals_view</servlet-name>
+        <url-pattern>/individuals/view/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>individuals_shipment_new</servlet-name>
+        <jsp-file>/individuals_shipment_new.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>individuals_shipment_new</servlet-name>
+        <url-pattern>/individuals/shipment/new/</url-pattern>
+    </servlet-mapping>
 </web-app>

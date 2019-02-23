@@ -1,4 +1,4 @@
-package main.models;
+package main.model.entities;
 
 public class User {
     private String login;

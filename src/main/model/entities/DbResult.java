@@ -1,4 +1,4 @@
-package main.models;
+package main.model.entities;
 
 public class DbResult<T> {
     private T value;

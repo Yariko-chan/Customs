@@ -1,12 +1,12 @@
-package main.data;
+package main.model.data;
 
-import main.models.DbResult;
-import main.models.User;
-import main.models.UserType;
+import main.model.entities.DbResult;
+import main.model.entities.User;
+import main.model.entities.UserType;
 
 import java.sql.*;
 
-import static main.constants.DbConstants.*;
+import static main.utils.constants.DbConstants.*;
 
 public class LoginDao {
 
