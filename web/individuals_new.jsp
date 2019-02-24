@@ -14,16 +14,14 @@
     <title><fmt:message key="individuals.title"/></title>
 </head>
 <body>
-    <form action="AddPerson" method = "POST" target = "_parent">
+    <form action="${pageContext.request.contextPath}/new/person/save/" method = "POST" target = "_parent">
         <fmt:message key="individuals.add.name" /> <input type="text" name="name" /> <Br>
         <fmt:message key="individuals.add.surname" /> <input type="text" name="surname" /> <Br>
         <fmt:message key="individuals.add.patronymic" /> <input type="text" name="patronymic" /> <Br>
         <fmt:message key="individuals.add.birthdate" /> <input type="date" name="birthdate" /> <Br>
         <fmt:message key="individuals.add.passport" /> <input type="text" name="passport" /> <Br>
-        <fmt:message key="individuals.add.country" /> <input type="text" name="country" /> <Br>
 
-
-        <select name="countries">
+        <select name="country">
             <c:forEach items="${sorted_countries_list}" var="list">
                 <option value="${list.key}">${list.value}</option>
             </c:forEach>

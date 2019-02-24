@@ -9,43 +9,17 @@
         <listener-class>main.ContextCallbackListener</listener-class>
     </listener>
 
-    <servlet>
-        <servlet-name>individuals</servlet-name>
-        <jsp-file>/individuals.jsp</jsp-file>
-    </servlet>
+    <filter>
+        <filter-name>FormEncodingSetterFilter</filter-name>
+        <filter-class>main.FormEncodingSetterFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>FormEncodingSetterFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
-    <servlet-mapping>
-        <servlet-name>individuals</servlet-name>
-        <url-pattern>/individuals/</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>individuals_new</servlet-name>
-        <jsp-file>/individuals_new.jsp</jsp-file>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>individuals_new</servlet-name>
-        <url-pattern>/individuals/new/</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>individuals_view</servlet-name>
-        <jsp-file>/individuals_view.jsp</jsp-file>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>individuals_view</servlet-name>
-        <url-pattern>/individuals/view/</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>individuals_shipment_new</servlet-name>
-        <jsp-file>/individuals_shipment_new.jsp</jsp-file>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>individuals_shipment_new</servlet-name>
-        <url-pattern>/individuals/shipment/new/</url-pattern>
-    </servlet-mapping>
 </web-app>

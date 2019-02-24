@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <form action="${pageContext.request.contextPath}/individuals.jsp">
+    <form action="${pageContext.request.contextPath}/individuals">
         <input type="submit" value=<fmt:message key="individuals.title"/> />
     </form>
     <form action="${pageContext.request.contextPath}/companies.jsp">

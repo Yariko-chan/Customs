@@ -10,6 +10,8 @@ public class DbResult<T> {
     public DbResult() {
     }
 
+
+
     public T value() {
         return value;
     }

@@ -1,15 +1,36 @@
 package main.model.entities;
 
+import java.sql.Date;
+
 public class Person {
-    private int personId;
-    private String firstName;
-    private String lastName;
-    private String patronymic;
-    private long birthDate;
-    private String passport;
-    private String country;
+    private int personId = -1;
+    private String firstName = "";
+    private String lastName = "";
+    private String patronymic = "";
+    private Date birthDate = new Date(-1);
+    private String passport = "";
+    private String country = "";
 
     public Person() {
+    }
+
+    public Person(String firstName, String lastName, String patronymic, Date birthDate, String passport, String country) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.patronymic = patronymic;
+        this.birthDate = birthDate;
+        this.passport = passport;
+        this.country = country;
+    }
+
+    public Person(int personId, String firstName, String lastName, String patronymic, Date birthDate, String passport, String country) {
+        this.personId = personId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.patronymic = patronymic;
+        this.birthDate = birthDate;
+        this.passport = passport;
+        this.country = country;
     }
 
     public int getPersonId() {
@@ -44,11 +65,11 @@ public class Person {
         this.patronymic = patronymic;
     }
 
-    public long getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(long birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 

@@ -1,7 +1,9 @@
+<%@ page import="static main.utils.constants.Constants.ALL_PERSONS" %>
+<%@ page import="main.model.entities.Person" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@page import="main.model.data.Database" %>
 
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <fmt:setLocale value="${language}" scope="session"/>
@@ -13,7 +15,7 @@
 </head>
 <body>
 
-    <form action="${pageContext.request.contextPath}/add/person/">
+    <form action="${pageContext.request.contextPath}/new/person/">
         <input type="submit" value=<fmt:message key="individuals.add"/> />
     </form> </br>
 
@@ -25,7 +27,11 @@
     </form>
 
     <%
-        // todo load from persons Database.getInstance().login()
+        List<Person> persons = (List<Person>) request.getAttribute(ALL_PERSONS);
+        for (Person p :
+                persons) {
+            out.println(p.getFirstName() + "</br>");
+        }
     %>
 </body>
 </html>

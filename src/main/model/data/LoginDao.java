@@ -8,7 +8,8 @@ import java.sql.*;
 
 import static main.utils.constants.DbConstants.*;
 
-public class LoginDao {
+public class LoginDao extends Dao {
+
 
     public DbResult<User> login(String login, String password) {
         User user = null;
@@ -31,10 +32,7 @@ public class LoginDao {
 
     private User getUser(String login, int passwordHash) throws ClassNotFoundException, SQLException {
         String dbRequest = "select * from user where login=\'" + login + "\' and password_hash=" + passwordHash;
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/customs?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "root");
-        PreparedStatement statement = myConn.prepareStatement(dbRequest);
-        ResultSet rs = statement.executeQuery();
+        ResultSet rs = requestData(dbRequest);
         if (rs.next()) {
             UserType type = UserType.getFromString(rs.getString(TYPE));
             if (type != null) {
