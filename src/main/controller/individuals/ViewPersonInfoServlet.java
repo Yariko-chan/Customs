@@ -1,4 +1,10 @@
-package main.controller;
+package main.controller.individuals;
+
+import main.controller.BaseServlet;
+import main.model.data.Database;
+import main.model.entities.DbResult;
+import main.model.entities.Person;
+import main.utils.constants.Constants;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +20,14 @@ public class ViewPersonInfoServlet extends BaseServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // todo load person info by id
-        // put data to request
-        forward("/individuals_view.jsp", request, response);
+        int id = Integer.valueOf(request.getParameter(Constants.ID));
+        DbResult<Person> person = Database.getInstance().getPerson(id);
+        if (person.isAnyError()) {
+            // todo show error
+        } else {
+            request.setAttribute(Constants.PERSON, person.value());
+            forward("/individuals_view.jsp", request, response);
+        }
+
     }
 }

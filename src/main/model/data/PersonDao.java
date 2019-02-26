@@ -11,6 +11,23 @@ import static main.utils.constants.DbConstants.*;
 
 public class PersonDao extends Dao {
 
+    public DbResult<Person> getPerson(int id) {
+        DbResult<Person> result = new DbResult<>();
+        Person p = null;
+
+        try {
+            p = getPersonFroDb(id);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            result.setConnectionError();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            result.setSqlException();
+        }
+        result.setValue(p);
+        return result;
+    }
+
     public DbResult<List<Person>> getAllPersons() {
         DbResult<List<Person>> result = new DbResult<>();
         List<Person> persons = new ArrayList<>();
@@ -74,5 +91,22 @@ public class PersonDao extends Dao {
                     rs.getString(COUNTRY)));
         }
         return result;
+    }
+
+    private Person getPersonFroDb(int id) throws ClassNotFoundException, SQLException {
+        String dbRequest = "select * from person where person.person_id=" + id;
+        ResultSet rs = requestData(dbRequest);
+        Person p = null;
+        if (rs.next()) {
+            p = new Person(
+                    rs.getInt(PERSON_ID),
+                    rs.getString(FIRST_NAME),
+                    rs.getString(LAST_NAME),
+                    rs.getString(PATRONYMIC),
+                    rs.getDate(BIRTH_DATE),
+                    rs.getString(PASSPORT),
+                    rs.getString(COUNTRY));
+        }
+        return p;
     }
 }

@@ -34,6 +34,10 @@ public class Database {
         return personDao.getAllPersons();
     }
 
+    public DbResult<Person> getPerson(int id) {
+        return personDao.getPerson(id);
+    }
+
     public DbResult<Boolean> savePerson(Person p) {
         return personDao.savePerson(p);
     }

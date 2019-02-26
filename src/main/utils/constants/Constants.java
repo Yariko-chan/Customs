@@ -9,6 +9,7 @@ public class Constants {
     public static final String SORTED_COUNTRIES_LIST = "sorted_countries_list";
 
     public static final String ALL_PERSONS = "all_persons";
-
     public static final String SAVE_PERSON_RESULT = "save_person_result";
+    public static final String ID = "id";
+    public static final String PERSON = "person";
 }

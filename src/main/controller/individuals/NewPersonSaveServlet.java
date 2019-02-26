@@ -1,10 +1,12 @@
-package main.controller;
+package main.controller.individuals;
 
+import main.controller.BaseServlet;
 import main.controller.entities.SaveResult;
 import main.model.data.Database;
 import main.model.entities.DbResult;
 import main.model.entities.Person;
 import main.utils.constants.Constants;
+import main.utils.constants.SdfConstants;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -54,9 +56,8 @@ public class NewPersonSaveServlet extends BaseServlet {
         if (birthdate == null) {
             return null;
         }
-        SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            java.util.Date date = inputDateFormat.parse(birthdate);
+            java.util.Date date = SdfConstants.INPUT_DATE_FORMAT.parse(birthdate);
             return new Date(date.getTime());
         } catch (ParseException e) {
             return null;

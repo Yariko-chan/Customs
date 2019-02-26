@@ -1,4 +1,6 @@
-package main.controller;
+package main.controller.individuals;
+
+import main.controller.BaseServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +18,6 @@ public class AddShipmentServlet extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        forward("/individuals/shipment/new/", req, resp);
+        forward("/individuals_shipment_new.jsp", req, resp);
     }
 }

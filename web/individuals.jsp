@@ -20,7 +20,6 @@
     </form> </br>
 
     <%--todo search, result to list--%>
-    <%--todo open person info by clicking item in list--%>
     <form action="${pageContext.request.contextPath}/view/person/" method = "POST" target = "_parent">
         <input type="text" name="search" />
         <fmt:message key="individuals.search" var="search"/><input type="submit" value="${search}"> <Br>
@@ -28,9 +27,12 @@
 
     <%
         List<Person> persons = (List<Person>) request.getAttribute(ALL_PERSONS);
-        for (Person p :
-                persons) {
-            out.println(p.getFirstName() + "</br>");
+        for (Person p : persons) { %>
+            <form action="${pageContext.request.contextPath}/view/person/">
+                <%=p.getLastName() %> <%=p.getFirstName() %> <%=p.getPatronymic() %> <%=p.getPassport() %>
+                <input type="hidden" name="id" value="<%=p.getPersonId()%>">
+                <input type="submit" value=">" />
+            </form> <%
         }
     %>
 </body>
