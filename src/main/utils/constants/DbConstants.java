@@ -10,7 +10,6 @@ public class DbConstants {
     public static final String DB_PATH = "jdbc:mysql://localhost:3306/customs?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     public static final String DB_LOGIN = "root";
     public static final String DB_PASSWORD = "root";
-    public static final int ERROR_RESULT = -1;
 
     public static final String LOGIN = "login";
     public static final String PASSWORD_HASH = "password_hash";

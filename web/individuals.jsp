@@ -17,12 +17,12 @@
 
     <form action="${pageContext.request.contextPath}/new/person/">
         <input type="submit" value=<fmt:message key="individuals.add"/> />
-    </form> </br>
+    </form> <br>
 
     <%--todo search, result to list--%>
     <form action="${pageContext.request.contextPath}/view/person/" method = "POST" target = "_parent">
-        <input type="text" name="search" />
-        <fmt:message key="individuals.search" var="search"/><input type="submit" value="${search}"> <Br>
+        <label> <input type="text" name="search" /> </label>
+        <fmt:message key="individuals.search" var="search"/><input type="submit" value="${search}"> <br>
     </form>
 
     <%

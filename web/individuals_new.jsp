@@ -15,17 +15,17 @@
 </head>
 <body>
     <form action="${pageContext.request.contextPath}/new/person/save/" method = "POST" target = "_parent">
-        <fmt:message key="individuals.add.name" /> <input type="text" name="name" /> <Br>
-        <fmt:message key="individuals.add.surname" /> <input type="text" name="surname" /> <Br>
-        <fmt:message key="individuals.add.patronymic" /> <input type="text" name="patronymic" /> <Br>
-        <fmt:message key="individuals.add.birthdate" /> <input type="date" name="birthdate" /> <Br>
-        <fmt:message key="individuals.add.passport" /> <input type="text" name="passport" /> <Br>
+        <label><fmt:message key="individuals.add.name" /> <input type="text" name="name" /></label> <br>
+        <label><fmt:message key="individuals.add.surname" /> <input type="text" name="surname" /> </label> <br>
+        <label><fmt:message key="individuals.add.patronymic" /> <input type="text" name="patronymic" /> </label> <br>
+        <label><fmt:message key="individuals.add.birthdate" /> <input type="date" name="birthdate" /> </label> <br>
+        <label><fmt:message key="individuals.add.passport" /> <input type="text" name="passport" /> </label> <br>
 
-        <select name="country">
+        <label><select name="country">
             <c:forEach items="${sorted_countries_list}" var="list">
                 <option value="${list.key}">${list.value}</option>
             </c:forEach>
-        </select>
+        </select></label>
 
         <fmt:message key="individuals.add.add" var="submit"/><input type="submit" value="${submit}"> <Br>
     </form>

@@ -8,10 +8,10 @@ import java.sql.*;
 
 import static main.utils.constants.DbConstants.*;
 
-public class LoginDao extends Dao {
+public class LoginDao extends Dao<User> {
 
 
-    public DbResult<User> login(String login, String password) {
+    DbResult<User> login(String login, String password) {
         User user = null;
         DbResult<User> result = new DbResult<>();
 
@@ -30,17 +30,43 @@ public class LoginDao extends Dao {
         return result;
     }
 
-    private User getUser(String login, int passwordHash) throws ClassNotFoundException, SQLException {
+    User getUser(String login, int passwordHash) throws ClassNotFoundException, SQLException {
         String dbRequest = "select * from user where login=\'" + login + "\' and password_hash=" + passwordHash;
         ResultSet rs = requestData(dbRequest);
         if (rs.next()) {
-            UserType type = UserType.getFromString(rs.getString(TYPE));
-            if (type != null) {
-                return new User(rs.getString(LOGIN), rs.getInt(PASSWORD_HASH), type);
-            } else {
-                return null;
-            }
+            return parseResultSetToModel(rs);
         }
         return null;
+    }
+
+    @Override
+    String getTableName() {
+        return "user";
+    }
+
+
+    @Override
+    DbResult<User> getSingle(int id) {
+        throw new UnsupportedOperationException("Operation not supported yet, no id column for table provided");
+    }
+
+    @Override
+    String getIdColumnName() {
+        throw new UnsupportedOperationException("Operation not supported yet, no id column for table provided");
+    }
+
+    @Override
+    String createSaveRequest(User user) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    User parseResultSetToModel(ResultSet rs) throws SQLException {
+        UserType type = UserType.getFromString(rs.getString(TYPE));
+        if (type != null) {
+            return new User(rs.getString(LOGIN), rs.getInt(PASSWORD_HASH), type);
+        } else {
+            return null;
+        }
     }
 }

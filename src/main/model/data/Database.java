@@ -1,6 +1,7 @@
 package main.model.data;
 
 import main.model.entities.DbResult;
+import main.model.entities.IndividualShipment;
 import main.model.entities.Person;
 import main.model.entities.User;
 
@@ -25,20 +26,29 @@ public class Database {
 
     private LoginDao loginDao = new LoginDao();
     private PersonDao personDao = new PersonDao();
+    private IndividualShipmentDao individualShipmentDao = new IndividualShipmentDao();
 
     public DbResult<User> login(String login, String password) {
         return loginDao.login(login, password);
     }
 
     public DbResult<List<Person>> getAllPersons() {
-        return personDao.getAllPersons();
+        return personDao.getAll();
     }
 
     public DbResult<Person> getPerson(int id) {
-        return personDao.getPerson(id);
+        return personDao.getSingle(id);
     }
 
     public DbResult<Boolean> savePerson(Person p) {
-        return personDao.savePerson(p);
+        return personDao.saveSingle(p);
+    }
+
+    public DbResult<Boolean> saveIndividualShipment(IndividualShipment sh) {
+        return individualShipmentDao.saveSingle(sh);
+    }
+
+    public DbResult<List<IndividualShipment>> getShipmentsByPersonId(int id) {
+        return individualShipmentDao.getAllByPersonId(id);
     }
 }
