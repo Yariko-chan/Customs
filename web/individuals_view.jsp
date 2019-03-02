@@ -1,10 +1,17 @@
 <%@ page import="main.utils.constants.Constants" %>
+<%@ page import="static main.utils.constants.Constants.PERSON" %>
+<%@ page import="static main.utils.constants.Constants.FROM" %>
+<%@ page import="static main.utils.constants.Constants.TO" %>
+<%@ page import="static main.utils.constants.SdfConstants.INPUT_DATE_FORMAT" %>
 <%@ page import="main.model.entities.Person" %>
 <%@ page import="main.utils.constants.SdfConstants" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="main.model.entities.IndividualShipment" %>
 <%@ page import="java.util.List" %>
 <%@ page import="main.utils.ServletUtils" %>
+<%@ page import="main.utils.DateUtils" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="javafx.util.Pair" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -22,7 +29,14 @@
 </head>
 <body>
     <%
-        Person p = (Person) request.getAttribute(Constants.PERSON);
+        Person p = (Person) request.getAttribute(PERSON);
+        String from = (String) request.getAttribute(FROM);
+        String to = (String) request.getAttribute(TO);
+        if (from == null || to == null) {
+            Pair<Date, Date> lastMonth = DateUtils.getLastMonthPeriod();
+            from = INPUT_DATE_FORMAT.format(lastMonth.getKey());
+            to = INPUT_DATE_FORMAT.format(lastMonth.getValue());
+        }
         String country = "";
         List<IndividualShipment> personShipments = (List<IndividualShipment>) request.getAttribute(Constants.SHIPMENTS);
 //      --------------SHOW PERSON INFO--------------
@@ -36,10 +50,10 @@
             <%--SHOW SHIPMENTS IF PRESENT--%>
             <% if (personShipments != null && !personShipments.isEmpty()) { %>
 
-                <%--todo search, result to list--%>
-                <form action="SearchShipments" method = "POST" target = "_parent">
-                    <label><fmt:message key="individuals.view.from" /><input type="date" name="from" /></label>
-                    <label><fmt:message key="individuals.view.to"/><input type="date" name="to" /></label>
+                <form action="${pageContext.request.contextPath}/view/person/" method = "POST" target = "_parent">
+                    <input type="hidden" name="id" value="<%=p.getPersonId()%>">
+                    <label><fmt:message key="individuals.view.from" /><input type="date" name="from" value="<%=from%>"/></label>
+                    <label><fmt:message key="individuals.view.to"/><input type="date" name="to" value="<%=to%>"/></label>
                     <fmt:message key="individuals.view.search" var="search"/><input type="submit" value="${search}"> <br>
                 </form>
 

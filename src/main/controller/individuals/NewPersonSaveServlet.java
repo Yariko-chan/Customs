@@ -31,7 +31,7 @@ public class NewPersonSaveServlet extends BaseServlet {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String patronymic = request.getParameter("patronymic");
-        Date birthdate = DateUtils.parseDate(request.getParameter("birthdate"));
+        Date birthdate = DateUtils.parseSqlDate(request.getParameter("birthdate"));
         String passport = request.getParameter("passport");
         String country = request.getParameter("country");
         if (isNullOrEmpty(name) || isNullOrEmpty(surname) || isNullOrEmpty(patronymic) ||

@@ -13,9 +13,10 @@ import java.io.IOException;
 import java.util.List;
 
 import static main.utils.constants.Constants.PERSONS;
+import static main.utils.constants.Constants.SEARCH;
 
-@WebServlet(name = "Individuals", urlPatterns = "/individuals")
-public class IndividualsServlet extends BaseServlet {
+@WebServlet(name = "SearchPerson", urlPatterns = "/individuals/search")
+public class SearchPersonServlet extends BaseServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,12 +25,15 @@ public class IndividualsServlet extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        DbResult<List<Person>> allPersons = Database.getInstance().getAllPersons();
-        if (allPersons.isAnyError()) {
-            // todo show error
-        } else {
-            req.setAttribute(PERSONS, allPersons.value());
-            forward("/individuals.jsp", req, resp);
+        String query = req.getParameter(SEARCH);
+        if (query != null) {
+            DbResult<List<Person>> allPersons = Database.getInstance().searchPersons(query);
+            if (allPersons.isAnyError()) {
+                // todo show error
+            } else {
+                req.setAttribute(PERSONS, allPersons.value());
+            }
         }
+        forward("/individuals.jsp", req, resp);
     }
 }

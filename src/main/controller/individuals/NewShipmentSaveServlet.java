@@ -6,7 +6,6 @@ import main.model.data.Database;
 import main.model.entities.DbResult;
 import main.model.entities.IndividualShipment;
 import main.utils.DateUtils;
-import main.utils.constants.Constants;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +15,7 @@ import java.io.IOException;
 import java.sql.Date;
 
 import static main.utils.StringUtils.isNullOrEmpty;
-import static main.utils.DateUtils.parseDate;
+import static main.utils.DateUtils.parseSqlDate;
 import static main.utils.NumberUtils.parseFloat;
 import static main.utils.NumberUtils.parseInt;
 import static main.utils.constants.Constants.*;
@@ -34,7 +33,7 @@ public class NewShipmentSaveServlet extends BaseServlet {
         SaveResult saveResult = new SaveResult();
 
         int personId = parseInt(req.getParameter("id"));
-        Date date = parseDate(req.getParameter("date"));
+        Date date = parseSqlDate(req.getParameter("date"));
         String product = req.getParameter("product");
         float price = parseFloat(req.getParameter("price"));
         int quantity = parseInt(req.getParameter("quantity"));

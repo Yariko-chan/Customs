@@ -37,11 +37,15 @@ abstract class Dao<T> {
     }
 
     DbResult<List<T>> getAll() {
+        return getList("select * from " + getTableName());
+    }
+
+    DbResult<List<T>> getList(String request) {
         DbResult<List<T>> result = new DbResult<>();
         List<T> list = new ArrayList<>();
 
         try {
-            String dbRequest = "select * from " + getTableName();
+            String dbRequest = request;
             ResultSet rs = requestData(dbRequest);
             while (rs.next()) {
                 list.add(parseResultSetToModel(rs));

@@ -1,4 +1,4 @@
-<%@ page import="static main.utils.constants.Constants.ALL_PERSONS" %>
+<%@ page import="static main.utils.constants.Constants.PERSONS" %>
 <%@ page import="main.model.entities.Person" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" language="java" %>
@@ -20,19 +20,24 @@
     </form> <br>
 
     <%--todo search, result to list--%>
-    <form action="${pageContext.request.contextPath}/view/person/" method = "POST" target = "_parent">
+    <form action="${pageContext.request.contextPath}/individuals/search" method = "POST" target = "_parent">
+        <fmt:message key="individuals.search" var="search"/>
         <label> <input type="text" name="search" /> </label>
         <fmt:message key="individuals.search" var="search"/><input type="submit" value="${search}"> <br>
     </form>
 
     <%
-        List<Person> persons = (List<Person>) request.getAttribute(ALL_PERSONS);
-        for (Person p : persons) { %>
-            <form action="${pageContext.request.contextPath}/view/person/">
-                <%=p.getLastName() %> <%=p.getFirstName() %> <%=p.getPatronymic() %> <%=p.getPassport() %>
-                <input type="hidden" name="id" value="<%=p.getPersonId()%>">
-                <input type="submit" value=">" />
-            </form> <%
+        List<Person> persons = (List<Person>) request.getAttribute(PERSONS);
+        if (persons != null && !persons.isEmpty()) {
+            for (Person p : persons) { %>
+                <form action="${pageContext.request.contextPath}/view/person/">
+                    <%=p.getLastName() %> <%=p.getFirstName() %> <%=p.getPatronymic() %> <%=p.getPassport() %>
+                    <input type="hidden" name="id" value="<%=p.getPersonId()%>">
+                    <input type="submit" value=">" />
+                </form> <%
+            }
+        } else { %>
+            <fmt:message key="individuals.search.empty"/> <%
         }
     %>
 </body>

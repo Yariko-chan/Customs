@@ -2,10 +2,11 @@ package main.model.data;
 
 import main.model.entities.DbResult;
 import main.model.entities.IndividualShipment;
+import main.utils.constants.SdfConstants;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -49,23 +50,15 @@ class IndividualShipmentDao extends Dao<IndividualShipment> {
     }
 
     DbResult<List<IndividualShipment>> getAllByPersonId(int id) {
-        DbResult<List<IndividualShipment>> result = new DbResult<>();
-        List<IndividualShipment> list = new ArrayList<>();
+        String request = "select * from " + getTableName() + " where receiver=" + id;
+        return getList(request);
+    }
 
-        try {
-            String dbRequest = "select * from " + getTableName() + " where receiver=" + id;
-            ResultSet rs = requestData(dbRequest);
-            while (rs.next()) {
-                list.add(parseResultSetToModel(rs));
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            result.setConnectionError();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            result.setSqlException();
-        }
-        result.setValue(list);
-        return result;
+    // select * from individual_shipments where date between '2019-02-01' and '2019-02-20'
+    DbResult<List<IndividualShipment>> getSearchInPeriod(int personId, Date fromDate, Date toDate) {
+        String from = SdfConstants.DB_DATE_FORMAT.format(fromDate);
+        String to = SdfConstants.DB_DATE_FORMAT.format(toDate);
+        String request = "SELECT * FROM " + getTableName() + " WHERE receiver=" + personId + " AND date BETWEEN '" + from + "' AND '" + to + "'";
+        return getList(request);
     }
 }

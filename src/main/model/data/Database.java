@@ -5,6 +5,7 @@ import main.model.entities.IndividualShipment;
 import main.model.entities.Person;
 import main.model.entities.User;
 
+import java.sql.Date;
 import java.util.List;
 
 public class Database {
@@ -36,6 +37,10 @@ public class Database {
         return personDao.getAll();
     }
 
+    public DbResult<List<Person>> searchPersons(String name) {
+        return personDao.searchByName(name);
+    }
+
     public DbResult<Person> getPerson(int id) {
         return personDao.getSingle(id);
     }
@@ -50,5 +55,9 @@ public class Database {
 
     public DbResult<List<IndividualShipment>> getShipmentsByPersonId(int id) {
         return individualShipmentDao.getAllByPersonId(id);
+    }
+
+    public DbResult<List<IndividualShipment>> getShipmentsInPeriod(int personId, Date from, Date to) {
+        return individualShipmentDao.getSearchInPeriod(personId, from, to);
     }
 }

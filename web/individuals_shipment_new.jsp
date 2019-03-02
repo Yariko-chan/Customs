@@ -18,8 +18,8 @@
 <form action="${pageContext.request.contextPath}/add/shipment/save/" method = "POST" target = "_parent">
     <label><fmt:message key="individuals.shipment.date" /> <input type="date" name="date" /></label> <br>
     <label><fmt:message key="individuals.shipment.product" /> <input type="text" name="product" /></label> <br>
-    <label><fmt:message key="individuals.shipment.price" /> <input type="number" name="price"  step="0.1"/></label> <br>
-    <label><fmt:message key="individuals.shipment.quantity" /> <input type="number" name="quantity" /></label> <br>
+    <label><fmt:message key="individuals.shipment.price" /> <input type="number" name="price"  step="0.01"/></label> <fmt:message key="individuals.view.rub" /><br>
+    <label><fmt:message key="individuals.shipment.quantity" /> <input type="number" name="quantity" /></label> <fmt:message key="individuals.view.pc" /> <br>
     <input type="hidden" name="id" value="<%=request.getParameter(Constants.ID)%>" />
     <fmt:message key="individuals.add.add" var="add"/><input type="submit" value="${add}"> <br>
 </form>

@@ -1,9 +1,11 @@
 package main.model.data;
 
+import main.model.entities.DbResult;
 import main.model.entities.Person;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import static main.utils.constants.DbConstants.*;
 
@@ -41,5 +43,10 @@ class PersonDao extends Dao<Person> {
                 rs.getDate(BIRTH_DATE),
                 rs.getString(PASSPORT),
                 rs.getString(COUNTRY));
+    }
+
+    DbResult<List<Person>> searchByName(String name) {
+        String request = "SELECT * FROM " + getTableName() + " WHERE ((last_name LIKE '" + name + "%') OR (passport LIKE '"+ name + "%'))";
+        return getList(request);
     }
 }
