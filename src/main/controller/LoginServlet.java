@@ -23,7 +23,7 @@ public class LoginServlet extends BaseServlet {
         DbResult<User> loginResult = Database.getInstance().login(login, password);
 
         if (loginResult.isAnyError()) {
-
+            showErrorPage(request, response, loginResult);
         } else if (loginResult.value().getUserType() == UserType.ADMIN) {
             response.sendRedirect(request.getContextPath() + "/main.jsp");
         } else if (loginResult.value().getUserType() == UserType.USER) {

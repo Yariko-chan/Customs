@@ -33,7 +33,7 @@ public class ViewPersonInfoServlet extends BaseServlet {
         int id = parseInt(request.getParameter(ID));
         DbResult<Person> person = Database.getInstance().getPerson(id);
         if (person.isAnyError()) {
-            // todo show error
+            showErrorPage(request, response, person);
         } else {
             request.setAttribute(PERSON, person.value());
             Date from = parseSqlDate(request.getParameter(FROM));

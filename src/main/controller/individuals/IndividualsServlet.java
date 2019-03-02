@@ -26,7 +26,7 @@ public class IndividualsServlet extends BaseServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DbResult<List<Person>> allPersons = Database.getInstance().getAllPersons();
         if (allPersons.isAnyError()) {
-            // todo show error
+            showErrorPage(req, resp, allPersons);
         } else {
             req.setAttribute(PERSONS, allPersons.value());
             forward("/individuals.jsp", req, resp);

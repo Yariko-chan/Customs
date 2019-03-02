@@ -19,7 +19,6 @@
         <input type="submit" value=<fmt:message key="individuals.add"/> />
     </form> <br>
 
-    <%--todo search, result to list--%>
     <form action="${pageContext.request.contextPath}/individuals/search" method = "POST" target = "_parent">
         <fmt:message key="individuals.search" var="search"/>
         <label> <input type="text" name="search" /> </label>

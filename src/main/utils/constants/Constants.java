@@ -16,6 +16,7 @@ public class Constants {
     public static final String SEARCH = "search";
     public static final String FROM = "from";
     public static final String TO = "to";
+    public static final String MSG = "msg";
 
     public static final int ERROR = -1;
 }
