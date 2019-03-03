@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import static main.utils.constants.DbConstants.*;
+
 
 class IndividualShipmentDao extends Dao<IndividualShipment> {
 
@@ -24,7 +26,7 @@ class IndividualShipmentDao extends Dao<IndividualShipment> {
 
     @Override
     String getTableName() {
-        return "individual_shipments";
+        return INDIVIDUAL_SHIPMENTS;
     }
 
     @Override
@@ -41,11 +43,11 @@ class IndividualShipmentDao extends Dao<IndividualShipment> {
     @Override
     IndividualShipment parseResultSetToModel(ResultSet rs) throws SQLException {
         return new IndividualShipment(
-                rs.getDate("date"),
-                rs.getString("product"),
-                rs.getFloat("price"),
-                rs.getInt("quantity"),
-                rs.getInt("receiver")
+                rs.getDate(DATE),
+                rs.getString(PRODUCT),
+                rs.getFloat(PRICE),
+                rs.getInt(QUANTITY),
+                rs.getInt(RECEIVER)
         );
     }
 

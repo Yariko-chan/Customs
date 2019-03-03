@@ -1,9 +1,6 @@
 package main.model.data;
 
-import main.model.entities.DbResult;
-import main.model.entities.IndividualShipment;
-import main.model.entities.Person;
-import main.model.entities.User;
+import main.model.entities.*;
 
 import java.sql.Date;
 import java.util.List;
@@ -28,6 +25,8 @@ public class Database {
     private LoginDao loginDao = new LoginDao();
     private PersonDao personDao = new PersonDao();
     private IndividualShipmentDao individualShipmentDao = new IndividualShipmentDao();
+    private NationalCompanyDao nationalCompanyDao = new NationalCompanyDao();
+    private ForeignCountryDao foreignCountryDao = new ForeignCountryDao();
 
     public DbResult<User> login(String login, String password) {
         return loginDao.login(login, password);
@@ -59,5 +58,21 @@ public class Database {
 
     public DbResult<List<IndividualShipment>> getShipmentsInPeriod(int personId, Date from, Date to) {
         return individualShipmentDao.getSearchInPeriod(personId, from, to);
+    }
+
+    public DbResult<Boolean> saveNationalCompany(NationalCompany nc) {
+        return nationalCompanyDao.saveSingle(nc);
+    }
+
+    public DbResult<List<NationalCompany>> getTopNationalCompanies(int count) {
+        return nationalCompanyDao.getTopItems(count);
+    }
+
+    public DbResult<Boolean> saveForeignCompany(ForeignCompany fc) {
+        return foreignCountryDao.saveSingle(fc);
+    }
+
+    public DbResult<List<ForeignCompany>> getTopForeignCompanies(int count) {
+        return foreignCountryDao.getTopItems(count);
     }
 }

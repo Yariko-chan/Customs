@@ -24,4 +24,8 @@ public class StringUtils {
         HashMap countriesMap = (HashMap) ctx.getAttribute(Constants.COUNTRIES_MAP);
         return country != null && countriesMap != null && countriesMap.containsKey(country);
     }
+
+    public static boolean isValidUnp(String unp) {
+        return unp.length() == 9 && unp.matches("\\d{9}");
+    }
 }

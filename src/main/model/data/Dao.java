@@ -40,6 +40,10 @@ abstract class Dao<T> {
         return getList("select * from " + getTableName());
     }
 
+    DbResult<List<T>> getTopItems(int count) {
+        return getList("select * from " + getTableName() + " limit " + count);
+    }
+
     DbResult<List<T>> getList(String request) {
         DbResult<List<T>> result = new DbResult<>();
         List<T> list = new ArrayList<>();

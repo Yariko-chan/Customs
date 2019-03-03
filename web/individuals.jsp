@@ -20,7 +20,7 @@
     </form> <br>
 
     <form action="${pageContext.request.contextPath}/individuals/search" method = "POST" target = "_parent">
-        <fmt:message key="individuals.search" var="search"/>
+        <fmt:message key="individuals.search.label"/> <br>
         <label> <input type="text" name="search" /> </label>
         <fmt:message key="individuals.search" var="search"/><input type="submit" value="${search}"> <br>
     </form>

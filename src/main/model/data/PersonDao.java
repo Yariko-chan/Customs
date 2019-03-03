@@ -13,12 +13,12 @@ class PersonDao extends Dao<Person> {
 
     @Override
     String getTableName() {
-        return "person";
+        return PERSON;
     }
 
     @Override
     String getIdColumnName() {
-        return "person_id";
+        return PERSON_ID;
     }
 
     @Override

@@ -17,6 +17,8 @@ public class Constants {
     public static final String FROM = "from";
     public static final String TO = "to";
     public static final String MSG = "msg";
+    public static final String NATIONAL = "national";
+    public static final String FOREIGN = "foreign";
 
     public static final int ERROR = -1;
 }
