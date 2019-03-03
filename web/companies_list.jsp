@@ -29,7 +29,7 @@
     </form>
 
     <form action="${pageContext.request.contextPath}/national/search" method = "POST" target = "_parent">
-        <fmt:message key="companies.search.label"/> <br>
+        <fmt:message key="companies.national.search"/> <br>
         <label> <input type="text" name="search" /> </label>
         <fmt:message key="search" var="search"/><input type="submit" value="${search}"> <br>
     </form>
@@ -59,7 +59,7 @@
     </form>
 
     <form action="${pageContext.request.contextPath}/foreign/search" method = "POST" target = "_parent">
-        <fmt:message key="companies.search.label"/> <br>
+        <fmt:message key="companies.foreign.search"/> <br>
         <label> <input type="text" name="search" /> </label>
         <fmt:message key="search" var="search"/><input type="submit" value="${search}"> <br>
     </form>

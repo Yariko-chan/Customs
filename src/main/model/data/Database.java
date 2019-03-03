@@ -26,7 +26,7 @@ public class Database {
     private PersonDao personDao = new PersonDao();
     private IndividualShipmentDao individualShipmentDao = new IndividualShipmentDao();
     private NationalCompanyDao nationalCompanyDao = new NationalCompanyDao();
-    private ForeignCountryDao foreignCountryDao = new ForeignCountryDao();
+    private ForeignCompanyDao foreignCompanyDao = new ForeignCompanyDao();
 
     public DbResult<User> login(String login, String password) {
         return loginDao.login(login, password);
@@ -68,11 +68,19 @@ public class Database {
         return nationalCompanyDao.getTopItems(count);
     }
 
+    public DbResult<List<NationalCompany>> searchNational(String query) {
+        return nationalCompanyDao.searchByNameOrUnp(query);
+    }
+
     public DbResult<Boolean> saveForeignCompany(ForeignCompany fc) {
-        return foreignCountryDao.saveSingle(fc);
+        return foreignCompanyDao.saveSingle(fc);
     }
 
     public DbResult<List<ForeignCompany>> getTopForeignCompanies(int count) {
-        return foreignCountryDao.getTopItems(count);
+        return foreignCompanyDao.getTopItems(count);
+    }
+
+    public DbResult<List<ForeignCompany>> searchForeign(String query) {
+        return foreignCompanyDao.searchByName(query);
     }
 }

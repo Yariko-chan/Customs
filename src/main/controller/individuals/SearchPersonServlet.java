@@ -29,7 +29,7 @@ public class SearchPersonServlet extends BaseServlet {
         if (query != null) {
             DbResult<List<Person>> allPersons = Database.getInstance().searchPersons(query);
             if (allPersons.isAnyError()) {
-                // todo show error
+                showErrorPage(req, resp, allPersons);
             } else {
                 req.setAttribute(PERSONS, allPersons.value());
             }

@@ -1,13 +1,15 @@
 package main.model.data;
 
+import main.model.entities.DbResult;
 import main.model.entities.ForeignCompany;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import static main.utils.constants.DbConstants.*;
 
-public class ForeignCountryDao extends Dao<ForeignCompany> {
+public class ForeignCompanyDao extends Dao<ForeignCompany> {
 
     @Override
     String getTableName() {
@@ -34,5 +36,10 @@ public class ForeignCountryDao extends Dao<ForeignCompany> {
                 rs.getString(NAME),
                 rs.getString(COUNTRY)
         );
+    }
+
+    public DbResult<List<ForeignCompany>> searchByName(String query) {
+        String request = "SELECT * FROM " + getTableName() + " WHERE (name LIKE '" + query + "%')";
+        return getList(request);
     }
 }
