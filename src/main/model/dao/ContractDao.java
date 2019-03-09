@@ -1,6 +1,6 @@
 package main.model.dao;
 
-import main.controller.entities.Trade;
+import main.controller.entities.TradeType;
 import main.model.entities.Contract;
 import main.model.entities.DbResult;
 
@@ -38,14 +38,14 @@ public class ContractDao extends Dao<Contract> {
         return new Contract(
                 rs.getInt(CONTRACT_ID),
                 rs.getString(CONTRACT_NUMBER),
-                Trade.getByDbTag(rs.getString(TYPE)),
+                TradeType.getByDbTag(rs.getString(TYPE)),
                 rs.getDate(DATE),
                 rs.getInt(NATIONAL_COMPANY),
                 rs.getInt(FOREIGN_COMPANY)
         );
     }
 
-    DbResult<List<Contract>> getAll(Trade type) {
+    DbResult<List<Contract>> getAll(TradeType type) {
         String query = "SELECT * FROM " + getTableName() + " WHERE type='" + type.dbValue + "'";
         return getList(query);
     }

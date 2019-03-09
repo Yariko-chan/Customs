@@ -1,6 +1,6 @@
 package main.model.dao;
 
-import main.controller.entities.Trade;
+import main.controller.entities.TradeType;
 import main.model.entities.*;
 
 import java.sql.Date;
@@ -29,6 +29,7 @@ public class Database {
     private NationalCompanyDao nationalCompanyDao = new NationalCompanyDao();
     private ForeignCompanyDao foreignCompanyDao = new ForeignCompanyDao();
     private ContractDao contractDao = new ContractDao();
+    private TradeDao tradeDao = new TradeDao();
 
     public DbResult<User> login(String login, String password) {
         return loginDao.login(login, password);
@@ -94,11 +95,31 @@ public class Database {
         return foreignCompanyDao.searchByName(query);
     }
 
-    public DbResult<List<Contract>> getAllContractsOfType(Trade type) {
+    public DbResult<List<Contract>> getAllContractsOfType(TradeType type) {
         return contractDao.getAll(type);
+    }
+
+    public DbResult<List<Contract>> getAllContracts() {
+        return contractDao.getAll();
     }
 
     public DbResult<Boolean> saveContract(Contract c) {
         return contractDao.saveSingle(c);
+    }
+
+    public DbResult<List<Trade>> getAllTrades() {
+        return tradeDao.getAll();
+    }
+
+    public DbResult<List<Trade>> getAllTradesOfType(TradeType tradeType) {
+        return tradeDao.getAll(tradeType);
+    }
+
+    public DbResult<List<Trade>> getTopTrades(TradeType tradeType, int count) {
+        return tradeDao.getTop(tradeType, count);
+    }
+
+    public DbResult<Boolean> saveTrade(Trade trade) {
+        return tradeDao.saveSingle(trade);
     }
 }

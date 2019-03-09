@@ -23,6 +23,12 @@ public class Constants {
     public static final String DATE = "date";
     public static final String NUMBER = "number";
     public static final String CONTRACTS = "contracts";
+    public static final String PRODUCT = "product";
+    public static final String PRICE = "price";
+    public static final String QUANTITY = "quantity";
+    public static final String CONTRACT = "contract";
+    public static final String EXPORT = "export";
+    public static final String IMPORT = "import";
 
     public static final int ERROR = -1;
 }

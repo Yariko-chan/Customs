@@ -1,7 +1,7 @@
 package main.controller.companies.trade;
 
 import main.controller.BaseServlet;
-import main.controller.entities.Trade;
+import main.controller.entities.TradeType;
 import main.model.dao.Database;
 import main.model.entities.Contract;
 import main.model.entities.DbResult;
@@ -24,7 +24,7 @@ public class NewTradeServlet extends BaseServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // todo retrieve export/import and load contracts
-        Trade type = Trade.valueOf(request.getParameter(TYPE));
+        TradeType type = TradeType.valueOf(request.getParameter(TYPE));
         DbResult<List<Contract>> contracts = Database.getInstance().getAllContractsOfType(type);
         if (contracts.isAnyError()) {
             showErrorPage(request, response, contracts);

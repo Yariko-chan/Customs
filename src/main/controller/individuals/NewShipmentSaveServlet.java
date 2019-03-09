@@ -32,11 +32,11 @@ public class NewShipmentSaveServlet extends BaseServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         SaveResult saveResult = new SaveResult();
 
-        int personId = parseInt(req.getParameter("id"));
-        Date date = parseSqlDate(req.getParameter("date"));
-        String product = req.getParameter("product");
-        float price = parseFloat(req.getParameter("price"));
-        int quantity = parseInt(req.getParameter("quantity"));
+        int personId = parseInt(req.getParameter(ID));
+        Date date = parseSqlDate(req.getParameter(DATE));
+        String product = req.getParameter(PRODUCT);
+        float price = parseFloat(req.getParameter(PRICE));
+        int quantity = parseInt(req.getParameter(QUANTITY));
         if (personId <= ERROR || DateUtils.isNullOrEmpty(date) || isNullOrEmpty(product) ||
                 price <= ERROR || quantity <= ERROR) {
             saveResult.setInputError();

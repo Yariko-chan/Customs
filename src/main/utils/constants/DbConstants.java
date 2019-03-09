@@ -46,4 +46,7 @@ public class DbConstants {
     public static final String CONTRACT_ID = "contract_id";
     public static final String CONTRACT_NUMBER = "contract_number";
     public static final String NATIONAL_COMPANY = "national_company";
+
+    public static final String ID = "id";
+    public static final String CONTRACT = "contract";
 }

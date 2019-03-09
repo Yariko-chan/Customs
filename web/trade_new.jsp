@@ -5,7 +5,7 @@
 <%@ page import="static main.utils.constants.Constants.CONTRACTS" %>
 <%@ page import="main.model.entities.Contract" %>
 <%@ page import="java.util.List" %>
-<%@ page import="main.controller.entities.Trade" %>
+<%@ page import="main.controller.entities.TradeType" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -23,7 +23,7 @@
 </head>
 <body>
     <%
-        Trade type = Trade.valueOf(request.getParameter(TYPE));
+        TradeType type = TradeType.valueOf(request.getParameter(TYPE));
         String defaultValidDate = getDefaultDate();
         List<Contract> contracts = (List<Contract>) request.getAttribute(CONTRACTS);
         if (type != null && contracts != null && !contracts.isEmpty()) { %>

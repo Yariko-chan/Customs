@@ -1,7 +1,7 @@
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.sql.Date" %>
 <%@ page import="static main.utils.constants.SdfConstants.INPUT_DATE_FORMAT" %>
-<%@ page import="main.controller.entities.Trade" %>
+<%@ page import="main.controller.entities.TradeType" %>
 <%@ page import="static main.utils.constants.Constants.TYPE" %>
 <%@ page import="main.model.entities.ForeignCompany" %>
 <%@ page import="java.util.List" %>
@@ -37,8 +37,8 @@
                 <label><fmt:message key="number" /> <input type="text" name="number" /></label> <br>
 
                 <% // FOREIGN
-                Trade tradeType = Trade.valueOf(type);
-                if (tradeType == Trade.EXPORT) { %> <%--foreign -> receiver--%>
+                TradeType tradeType = TradeType.valueOf(type);
+                if (tradeType == TradeType.EXPORT) { %> <%--foreign -> receiver--%>
                     <fmt:message key="contract.recipient"/> <%
                 } else { %> <%-- IMPORT foreign -> supplier --%>
                     <fmt:message key="contract.supplier"/> <%
@@ -50,7 +50,7 @@
                 </select></label> <br><%
 
                 // NATIONAL
-                if (tradeType == Trade.EXPORT) { %> <%-- national -> supplier--%>
+                if (tradeType == TradeType.EXPORT) { %> <%-- national -> supplier--%>
                     <fmt:message key="contract.supplier"/> <%
                 } else { %> <%-- IMPORT national -> receiver --%>
                     <fmt:message key="contract.recipient"/> <%

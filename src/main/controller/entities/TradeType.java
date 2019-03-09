@@ -1,19 +1,19 @@
 package main.controller.entities;
 
-public enum Trade {
+public enum TradeType {
     EXPORT("EXP"), IMPORT("IMP");
 
     public final String dbValue;
 
-    Trade(String dbValue) {
+    TradeType(String dbValue) {
         this.dbValue = dbValue;
     }
 
-    public static Trade getByDbTag(String tag) {
+    public static TradeType getByDbTag(String tag) {
         if (tag == null || tag.isEmpty()) {
             return null;
         }
-        for (Trade t: Trade.values()) {
+        for (TradeType t: TradeType.values()) {
             if (t.dbValue.equals(tag)) {
                 return t;
             }
