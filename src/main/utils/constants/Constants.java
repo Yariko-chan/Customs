@@ -19,6 +19,10 @@ public class Constants {
     public static final String MSG = "msg";
     public static final String NATIONAL = "national";
     public static final String FOREIGN = "foreign";
+    public static final String TYPE = "type";
+    public static final String DATE = "date";
+    public static final String NUMBER = "number";
+    public static final String CONTRACTS = "contracts";
 
     public static final int ERROR = -1;
 }

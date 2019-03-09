@@ -1,4 +1,4 @@
-package main.model.data;
+package main.model.dao;
 
 import main.model.entities.DbResult;
 import main.model.entities.ForeignCompany;

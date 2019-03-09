@@ -42,4 +42,8 @@ public class DbConstants {
 
     public static final String FOREIGN_COMPANY = "foreign_company";
     public static final String FOREIGN_COMPANY_ID = "foreign_company_id";
+
+    public static final String CONTRACT_ID = "contract_id";
+    public static final String CONTRACT_NUMBER = "contract_number";
+    public static final String NATIONAL_COMPANY = "national_company";
 }

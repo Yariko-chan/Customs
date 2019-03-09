@@ -1,5 +1,6 @@
-package main.model.data;
+package main.model.dao;
 
+import main.controller.entities.Trade;
 import main.model.entities.*;
 
 import java.sql.Date;
@@ -27,6 +28,7 @@ public class Database {
     private IndividualShipmentDao individualShipmentDao = new IndividualShipmentDao();
     private NationalCompanyDao nationalCompanyDao = new NationalCompanyDao();
     private ForeignCompanyDao foreignCompanyDao = new ForeignCompanyDao();
+    private ContractDao contractDao = new ContractDao();
 
     public DbResult<User> login(String login, String password) {
         return loginDao.login(login, password);
@@ -64,6 +66,10 @@ public class Database {
         return nationalCompanyDao.saveSingle(nc);
     }
 
+    public DbResult<List<NationalCompany>> getAllNationalCompanies() {
+        return nationalCompanyDao.getAll();
+    }
+
     public DbResult<List<NationalCompany>> getTopNationalCompanies(int count) {
         return nationalCompanyDao.getTopItems(count);
     }
@@ -76,11 +82,23 @@ public class Database {
         return foreignCompanyDao.saveSingle(fc);
     }
 
+    public DbResult<List<ForeignCompany>> getAllForeignCompanies() {
+        return foreignCompanyDao.getAll();
+    }
+
     public DbResult<List<ForeignCompany>> getTopForeignCompanies(int count) {
         return foreignCompanyDao.getTopItems(count);
     }
 
     public DbResult<List<ForeignCompany>> searchForeign(String query) {
         return foreignCompanyDao.searchByName(query);
+    }
+
+    public DbResult<List<Contract>> getAllContractsOfType(Trade type) {
+        return contractDao.getAll(type);
+    }
+
+    public DbResult<Boolean> saveContract(Contract c) {
+        return contractDao.saveSingle(c);
     }
 }

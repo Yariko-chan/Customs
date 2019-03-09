@@ -1,7 +1,7 @@
 package main.controller.individuals;
 
 import main.controller.BaseServlet;
-import main.model.data.Database;
+import main.model.dao.Database;
 import main.model.entities.DbResult;
 import main.model.entities.Person;
 

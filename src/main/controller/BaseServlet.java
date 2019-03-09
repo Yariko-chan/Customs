@@ -38,6 +38,11 @@ public abstract class BaseServlet extends HttpServlet {
         forward("/error_page.jsp", request, response);
     }
 
+    protected void showErrorPage(HttpServletRequest request, HttpServletResponse response, String msg) throws ServletException, IOException {
+        request.setAttribute(MSG, msg);
+        forward("/error_page.jsp", request, response);
+    }
+
     protected String getStringProperty(String key) {
         if (key == null) {
             return null;

@@ -1,6 +1,6 @@
 package main.controller;
 
-import main.model.data.Database;
+import main.model.dao.Database;
 import main.model.entities.DbResult;
 import main.model.entities.User;
 import main.model.entities.UserType;

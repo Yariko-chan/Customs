@@ -1,4 +1,4 @@
-package main.model.data;
+package main.model.dao;
 
 import main.model.entities.DbResult;
 
@@ -44,13 +44,12 @@ abstract class Dao<T> {
         return getList("select * from " + getTableName() + " limit " + count);
     }
 
-    DbResult<List<T>> getList(String request) {
+    DbResult<List<T>> getList(String query) {
         DbResult<List<T>> result = new DbResult<>();
         List<T> list = new ArrayList<>();
 
         try {
-            String dbRequest = request;
-            ResultSet rs = requestData(dbRequest);
+            ResultSet rs = requestData(query);
             while (rs.next()) {
                 list.add(parseResultSetToModel(rs));
             }

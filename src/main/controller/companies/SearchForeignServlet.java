@@ -1,7 +1,7 @@
 package main.controller.companies;
 
 import main.controller.BaseServlet;
-import main.model.data.Database;
+import main.model.dao.Database;
 import main.model.entities.DbResult;
 import main.model.entities.ForeignCompany;
 import main.model.entities.NationalCompany;

@@ -1,3 +1,4 @@
+<%@ page import="main.controller.entities.Trade" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -16,15 +17,17 @@
         <input type="submit" value=<fmt:message key="companies.title"/> />
     </form> <br>
 
-    <form action="${pageContext.request.contextPath}/new/export/">
+    <form action="${pageContext.request.contextPath}/new/trade/">
         <fmt:message key="export.title"/>
+        <input type="hidden" name="type" value="<%=Trade.EXPORT%>">
         <input type="submit" value=<fmt:message key="export.add"/> />
     </form> <br>
 
     <%--todo list export top 10--%>
 
-    <form action="${pageContext.request.contextPath}/new/import/">
+    <form action="${pageContext.request.contextPath}/new/trade/">
         <fmt:message key="import.title"/>
+        <input type="hidden" name="type" value="<%=Trade.IMPORT%>">
         <input type="submit" value=<fmt:message key="import.add"/> />
     </form> <br>
 
