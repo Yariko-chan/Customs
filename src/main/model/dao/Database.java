@@ -1,5 +1,6 @@
 package main.model.dao;
 
+import main.controller.entities.FullTrade;
 import main.controller.entities.TradeType;
 import main.model.entities.*;
 
@@ -30,6 +31,7 @@ public class Database {
     private ForeignCompanyDao foreignCompanyDao = new ForeignCompanyDao();
     private ContractDao contractDao = new ContractDao();
     private TradeDao tradeDao = new TradeDao();
+    private FullTradeDao fullTradeDao = new FullTradeDao(contractDao, tradeDao, nationalCompanyDao, foreignCompanyDao);
 
     public DbResult<User> login(String login, String password) {
         return loginDao.login(login, password);
@@ -121,5 +123,17 @@ public class Database {
 
     public DbResult<Boolean> saveTrade(Trade trade) {
         return tradeDao.saveSingle(trade);
+    }
+
+    public DbResult<List<FullTrade>> getAllFullTrades() {
+        return fullTradeDao.getAll();
+    }
+
+    public DbResult<List<FullTrade>> getAllFullTradesOfType(TradeType type) {
+        return fullTradeDao.getAllOfType(type);
+    }
+
+    public DbResult<List<FullTrade>> getTopFullTradesOfType(TradeType type, int count) {
+        return fullTradeDao.getTop(type, count);
     }
 }

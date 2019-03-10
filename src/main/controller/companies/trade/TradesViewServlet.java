@@ -15,8 +15,8 @@ import java.util.List;
 
 import static main.utils.constants.Constants.TYPE;
 
-@WebServlet(name = "NewTrade", urlPatterns = "/new/trade/")
-public class NewTradeServlet extends BaseServlet {
+@WebServlet(name = "TradesView", urlPatterns = "/trades/view")
+public class TradesViewServlet extends BaseServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
@@ -29,7 +29,7 @@ public class NewTradeServlet extends BaseServlet {
             showErrorPage(request, response, contracts);
         } else {
             request.setAttribute("contracts", contracts.value());
-            forward("/trade_new.jsp", request, response);
+            forward("/trades_view.jsp", request, response);
         }
     }
 }

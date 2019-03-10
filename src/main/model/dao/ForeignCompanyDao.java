@@ -33,8 +33,8 @@ public class ForeignCompanyDao extends Dao<ForeignCompany> {
     ForeignCompany parseResultSetToModel(ResultSet rs) throws SQLException {
         return new ForeignCompany(
                 rs.getInt(FOREIGN_COMPANY_ID),
-                rs.getString(NAME),
-                rs.getString(COUNTRY)
+                rs.getString(FC_NAME),
+                rs.getString(FC_COUNTRY)
         );
     }
 

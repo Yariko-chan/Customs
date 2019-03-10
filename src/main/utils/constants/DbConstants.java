@@ -40,8 +40,10 @@ public class DbConstants {
     public static final String LICENSE_NUM = "license_number";
     public static final String LICENSE_VALID_DATE = "license_valid_date";
 
+    public static final String FC_NAME = "fc_name";
     public static final String FOREIGN_COMPANY = "foreign_company";
     public static final String FOREIGN_COMPANY_ID = "foreign_company_id";
+    public static final String FC_COUNTRY = "fc_country";
 
     public static final String CONTRACT_ID = "contract_id";
     public static final String CONTRACT_NUMBER = "contract_number";

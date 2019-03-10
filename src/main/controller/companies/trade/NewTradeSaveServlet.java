@@ -1,7 +1,6 @@
 package main.controller.companies.trade;
 
 import main.controller.BaseServlet;
-import main.controller.entities.TradeType;
 import main.model.dao.Database;
 import main.model.entities.DbResult;
 import main.model.entities.Trade;

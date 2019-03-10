@@ -32,11 +32,18 @@
         if (export != null && !export.isEmpty()) {
             for (FullTrade t: export) { %>
                 <%=t.getTrade().getDate()%>
+                <%=t.getForeignCompany().getName()%>
+                <%=t.getNationalCompany().getName()%>
                 <fmt:message key="contract.number"/> <%=t.getContract().getContractNumber()%>
                 <%=t.getTrade().getProduct()%>
                 <%=t.getTrade().getPrice()%> <fmt:message key="individuals.view.rub"/>
                 <%=t.getTrade().getQuantity()%> <fmt:message key="individuals.view.pc"/> <br> <%
-            }
+            } %>
+
+            <form action="${pageContext.request.contextPath}/trades/view">
+                <input type="hidden" name="type" value="<%=TradeType.EXPORT%>">
+                <input type="submit" value=<fmt:message key="all"/> />
+            </form> <%
         } else {%>
             <fmt:message key="list.empty"/> <%
         }
@@ -52,11 +59,18 @@
         if (imports != null && !imports.isEmpty()) {
             for (FullTrade t: imports) { %>
                 <%=t.getTrade().getDate()%>
+                <%=t.getNationalCompany().getName()%>
+                <%=t.getForeignCompany().getName()%>
                 <fmt:message key="contract.number"/> <%=t.getContract().getContractNumber()%>
                 <%=t.getTrade().getProduct()%>
                 <%=t.getTrade().getPrice()%> <fmt:message key="individuals.view.rub"/>
                 <%=t.getTrade().getQuantity()%> <fmt:message key="individuals.view.pc"/> <br> <%
-            }
+            } %>
+
+            <form action="${pageContext.request.contextPath}/trades/view">
+                <input type="hidden" name="type" value="<%=TradeType.IMPORT%>">
+                <input type="submit" value=<fmt:message key="all"/> />
+            </form> <%
         } else {%>
             <fmt:message key="list.empty"/> <%
         }
