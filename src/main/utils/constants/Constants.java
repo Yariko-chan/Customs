@@ -29,6 +29,7 @@ public class Constants {
     public static final String CONTRACT = "contract";
     public static final String EXPORT = "export";
     public static final String IMPORT = "import";
+    public static final String TRADES = "trades";
 
     public static final int ERROR = -1;
 }

@@ -52,8 +52,8 @@
 
                 <form action="${pageContext.request.contextPath}/view/person/" method = "POST" target = "_parent">
                     <input type="hidden" name="id" value="<%=p.getPersonId()%>">
-                    <label><fmt:message key="individuals.view.from" /><input type="date" name="from" value="<%=from%>"/></label>
-                    <label><fmt:message key="individuals.view.to"/><input type="date" name="to" value="<%=to%>"/></label>
+                    <label><fmt:message key="from" /><input type="date" name="from" value="<%=from%>"/></label>
+                    <label><fmt:message key="to"/><input type="date" name="to" value="<%=to%>"/></label>
                     <fmt:message key="individuals.view.search" var="search"/><input type="submit" value="${search}"> <br>
                 </form>
 

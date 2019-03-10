@@ -39,7 +39,7 @@ public class ContractDao extends Dao<Contract> {
                 rs.getInt(CONTRACT_ID),
                 rs.getString(CONTRACT_NUMBER),
                 TradeType.getByDbTag(rs.getString(TYPE)),
-                rs.getDate(DATE),
+                rs.getDate(CONTRACT_DATE),
                 rs.getInt(NATIONAL_COMPANY),
                 rs.getInt(FOREIGN_COMPANY)
         );

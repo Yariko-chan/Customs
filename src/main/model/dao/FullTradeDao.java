@@ -3,7 +3,9 @@ package main.model.dao;
 import main.controller.entities.FullTrade;
 import main.controller.entities.TradeType;
 import main.model.entities.*;
+import main.utils.constants.SdfConstants;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -67,13 +69,21 @@ public class FullTradeDao extends Dao<FullTrade>{
 
     DbResult<List<FullTrade>> getAllOfType(TradeType type) {
         String query = "SELECT * FROM " + getTableName() +
-                " AND contracts.type=" + type.dbValue;
+                " AND contracts.type='" + type.dbValue + "'";
         return getList(query);
     }
 
     DbResult<List<FullTrade>> getTop(TradeType type, int count) {
         String query = "SELECT * FROM " + getTableName() +
                 " AND contracts.type='" + type.dbValue + "' LIMIT " + count;
+        return getList(query);
+    }
+
+    DbResult<List<FullTrade>> getInPeriod(TradeType type, Date fromDate, Date toDate) {
+        String from = SdfConstants.DB_DATE_FORMAT.format(fromDate);
+        String to = SdfConstants.DB_DATE_FORMAT.format(toDate);
+        String query = "SELECT * FROM " + getTableName() +
+                " AND contracts.type='" + type.dbValue + "' AND " + trades + ".date BETWEEN '" + from + "' AND '" + to + "'";
         return getList(query);
     }
 }

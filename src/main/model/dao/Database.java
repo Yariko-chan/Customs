@@ -136,4 +136,8 @@ public class Database {
     public DbResult<List<FullTrade>> getTopFullTradesOfType(TradeType type, int count) {
         return fullTradeDao.getTop(type, count);
     }
+
+    public DbResult<List<FullTrade>> getFullTradesInPeriod(TradeType type, Date fromDate, Date toDate) {
+        return fullTradeDao.getInPeriod(type, fromDate, toDate);
+    }
 }
