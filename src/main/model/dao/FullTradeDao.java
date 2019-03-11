@@ -86,4 +86,24 @@ public class FullTradeDao extends Dao<FullTrade>{
                 " AND contracts.type='" + type.dbValue + "' AND " + trades + ".date BETWEEN '" + from + "' AND '" + to + "'";
         return getList(query);
     }
+
+    DbResult<List<FullTrade>> getForNationalInPeriod(int id, TradeType type, Date fromDate, Date toDate) {
+        String from = SdfConstants.DB_DATE_FORMAT.format(fromDate);
+        String to = SdfConstants.DB_DATE_FORMAT.format(toDate);
+        String query = "SELECT * FROM " + getTableName() +
+                " AND contracts.type='" + type.dbValue + "'" +
+                " AND " + trades + ".date BETWEEN '" + from + "' AND '" + to + "'" +
+                " AND " + nationals + "." + nationalCompanyDao.getIdColumnName() + "=" + id;
+        return getList(query);
+    }
+
+    DbResult<List<FullTrade>> getForForeignInPeriod(int id, TradeType type, Date fromDate, Date toDate) {
+        String from = SdfConstants.DB_DATE_FORMAT.format(fromDate);
+        String to = SdfConstants.DB_DATE_FORMAT.format(toDate);
+        String query = "SELECT * FROM " + getTableName() +
+                " AND contracts.type='" + type.dbValue + "'" +
+                " AND " + trades + ".date BETWEEN '" + from + "' AND '" + to + "'" +
+                " AND " + foreigns + "." + foreignCompanyDao.getIdColumnName() + "=" + id;
+        return getList(query);
+    }
 }

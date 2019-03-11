@@ -38,9 +38,14 @@
         List<NationalCompany> nationalCompanies = (List<NationalCompany>) request.getAttribute(NATIONAL);
         if (nationalCompanies != null && !nationalCompanies.isEmpty()) {
             for (NationalCompany nc: nationalCompanies) { %>
-                <%=nc.getName()%> <fmt:message key="companies.unp"/> <%=nc.getUNP()%>
-                <fmt:message key="companies.license"/> <%=nc.getLicense()%>
-                <fmt:message key="companies.valid"/> <%=nc.getLicenseValidDate()%> <br> <%
+                <form action="${pageContext.request.contextPath}/view/national">
+                    <%=nc.getName()%> <fmt:message key="companies.unp"/> <%=nc.getUNP()%>
+                    <fmt:message key="companies.license"/> <%=nc.getLicense()%>
+                    <fmt:message key="companies.valid"/> <%=nc.getLicenseValidDate()%>
+                    <input type="hidden" name="id" value="<%=nc.getId()%>">
+                    <input type="submit" value=">" />
+                </form> <%
+
             }
         } else { %>
             <fmt:message key="individuals.search.empty"/> <%
@@ -69,7 +74,12 @@
         if (foreignCompanies != null && !foreignCompanies.isEmpty()) {
             for (ForeignCompany fc: foreignCompanies) {
                 String country = ServletUtils.getCountry(getServletConfig(), fc.getCountry()); %>
-                <%=fc.getName()%> <%=country%> <br> <%
+                <form action="${pageContext.request.contextPath}/view/foreign">
+                    <%=fc.getName()%> <%=country%>
+                    <input type="hidden" name="id" value="<%=fc.getId()%>">
+                    <input type="submit" value=">" />
+                </form> <%
+
             }
         } else { %>
             <fmt:message key="individuals.search.empty"/> <%

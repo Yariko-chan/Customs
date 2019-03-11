@@ -81,6 +81,10 @@ public class Database {
         return nationalCompanyDao.searchByNameOrUnp(query);
     }
 
+    public DbResult<NationalCompany> getNational(int id) {
+        return nationalCompanyDao.getSingle(id);
+    }
+
     public DbResult<Boolean> saveForeignCompany(ForeignCompany fc) {
         return foreignCompanyDao.saveSingle(fc);
     }
@@ -95,6 +99,10 @@ public class Database {
 
     public DbResult<List<ForeignCompany>> searchForeign(String query) {
         return foreignCompanyDao.searchByName(query);
+    }
+
+    public DbResult<ForeignCompany> getForeign(int id) {
+        return foreignCompanyDao.getSingle(id);
     }
 
     public DbResult<List<Contract>> getAllContractsOfType(TradeType type) {
@@ -139,5 +147,13 @@ public class Database {
 
     public DbResult<List<FullTrade>> getFullTradesInPeriod(TradeType type, Date fromDate, Date toDate) {
         return fullTradeDao.getInPeriod(type, fromDate, toDate);
+    }
+
+    public DbResult<List<FullTrade>> getFullTradesForNationalInPeriod(int id, TradeType type, Date fromDate, Date toDate) {
+        return fullTradeDao.getForNationalInPeriod(id, type, fromDate, toDate);
+    }
+
+    public DbResult<List<FullTrade>> getFullTradesForForeignInPeriod(int id, TradeType type, Date fromDate, Date toDate) {
+        return fullTradeDao.getForForeignInPeriod(id, type, fromDate, toDate);
     }
 }
