@@ -62,11 +62,11 @@
                     for(IndividualShipment sh: personShipments) {
                         sum += sh.getPrice() * sh.getQuantity(); %>
                         <%=sh.getDate()%> <%=sh.getProduct()%>
-                        <%=sh.getPrice()%> <fmt:message key="individuals.view.rub"/>
+                        <%=sh.getPrice()%> <fmt:message key="rub"/>
                         <%=sh.getQuantity()%> <fmt:message key="individuals.view.pc"/> <br> <%
                     }
                     String sumFormatted = String.format("%.2f", sum); %>
-                    <fmt:message key="individuals.view.sum"/> <%=sumFormatted%> <fmt:message key="individuals.view.rub"/>  <%
+                    <fmt:message key="sum"/> <%=sumFormatted%> <fmt:message key="rub"/>  <%
                 }
             %>
 

@@ -36,7 +36,7 @@
                 <%=t.getNationalCompany().getName()%>
                 <fmt:message key="contract.number"/> <%=t.getContract().getContractNumber()%>
                 <%=t.getTrade().getProduct()%>
-                <%=t.getTrade().getPrice()%> <fmt:message key="individuals.view.rub"/>
+                <%=t.getTrade().getPrice()%> <fmt:message key="rub"/>
                 <%=t.getTrade().getQuantity()%> <fmt:message key="individuals.view.pc"/> <br> <%
             } %>
 
@@ -63,7 +63,7 @@
                 <%=t.getForeignCompany().getName()%>
                 <fmt:message key="contract.number"/> <%=t.getContract().getContractNumber()%>
                 <%=t.getTrade().getProduct()%>
-                <%=t.getTrade().getPrice()%> <fmt:message key="individuals.view.rub"/>
+                <%=t.getTrade().getPrice()%> <fmt:message key="rub"/>
                 <%=t.getTrade().getQuantity()%> <fmt:message key="individuals.view.pc"/> <br> <%
             } %>
 

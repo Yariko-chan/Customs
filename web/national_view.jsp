@@ -56,15 +56,18 @@
     <fmt:message key="export.title"/> <br>
     <% // export list
         List<FullTrade> exports = (List<FullTrade>) request.getAttribute(EXPORT);
+        float exportsSum = (float) request.getAttribute(EXPORT_SUM);
+        String expSumFormatted = String.format("%.2f", exportsSum);
         if (exports != null && !exports.isEmpty()) {
             for (FullTrade t: exports) { %>
                 <%=t.getTrade().getDate()%>
                 <%=t.getForeignCompany().getName()%>
                 <fmt:message key="contract.number"/> <%=t.getContract().getContractNumber()%>
                 <%=t.getTrade().getProduct()%>
-                <%=t.getTrade().getPrice()%> <fmt:message key="individuals.view.rub"/>
+                <%=t.getTrade().getPrice()%> <fmt:message key="rub"/>
                 <%=t.getTrade().getQuantity()%> <fmt:message key="individuals.view.pc"/> <br> <%
-            }
+            }  %>
+            <fmt:message key="sum"/> <%=expSumFormatted%> <fmt:message key="rub"/> <br> <%
         } else {%>
             <fmt:message key="list.empty"/> <br> <%
         }
@@ -75,15 +78,18 @@
     <fmt:message key="import.title"/> <br>
     <% // import list
         List<FullTrade> imports = (List<FullTrade>) request.getAttribute(IMPORT);
+        float importsSum = (float) request.getAttribute(IMPORT_SUM);
+        String impSumFormatted = String.format("%.2f", importsSum);
         if (imports != null && !imports.isEmpty()) {
             for (FullTrade t: imports) { %>
                 <%=t.getTrade().getDate()%>
                 <%=t.getForeignCompany().getName()%>
                 <fmt:message key="contract.number"/> <%=t.getContract().getContractNumber()%>
                 <%=t.getTrade().getProduct()%>
-                <%=t.getTrade().getPrice()%> <fmt:message key="individuals.view.rub"/>
+                <%=t.getTrade().getPrice()%> <fmt:message key="rub"/>
                 <%=t.getTrade().getQuantity()%> <fmt:message key="individuals.view.pc"/> <br> <%
-            }
+            } %>
+            <fmt:message key="sum"/> <%=impSumFormatted%> <fmt:message key="rub"/> <br> <%
         } else {%>
             <fmt:message key="list.empty"/> <br> <%
         }

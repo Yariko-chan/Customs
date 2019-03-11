@@ -31,6 +31,8 @@ public class Constants {
     public static final String IMPORT = "import";
     public static final String TRADES = "trades";
     public static final String COMPANY = "company";
+    public static final String EXPORT_SUM = "export_sum";
+    public static final String IMPORT_SUM = "import_sum";
 
     public static final int ERROR = -1;
 }

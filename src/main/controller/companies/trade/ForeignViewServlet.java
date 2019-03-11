@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static main.utils.DateUtils.parseSqlDate;
+import static main.utils.ListUtils.getSum;
 import static main.utils.NumberUtils.parseInt;
 import static main.utils.constants.Constants.*;
 import static main.utils.constants.SdfConstants.INPUT_DATE_FORMAT;
@@ -54,14 +55,18 @@ public class ForeignViewServlet extends BaseServlet {
             DbResult<List<FullTrade>> imports = Database.getInstance().getFullTradesForForeignInPeriod(id, TradeType.IMPORT, from, to);
             if (exports.isAnyError()) {
                 request.setAttribute(EXPORT, new ArrayList<FullTrade>());
+                request.setAttribute(EXPORT_SUM, 0f);
             } else {
                 request.setAttribute(EXPORT, exports.value());
+                request.setAttribute(EXPORT_SUM, getSum(exports.value()));
 
             }
             if (imports.isAnyError()) {
                 request.setAttribute(IMPORT, new ArrayList<FullTrade>());
+                request.setAttribute(IMPORT_SUM, 0f);
             } else {
                 request.setAttribute(IMPORT, imports.value());
+                request.setAttribute(IMPORT_SUM, getSum(imports.value()));
             }
             forward("/foreign_view.jsp", request, response);
         }
