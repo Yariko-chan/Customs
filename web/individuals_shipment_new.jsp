@@ -15,19 +15,22 @@
 <html>
 <head>
     <title><fmt:message key="individuals.shipment.new"/></title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <%
-        String defaultValidDate = getDefaultDate();
-    %>
-    <form action="${pageContext.request.contextPath}/add/shipment/save/" method = "POST" target = "_parent">
-        <label><fmt:message key="date" /> <input type="date" name="date" value="<%=defaultValidDate%>" /></label> <br>
-        <label><fmt:message key="product" /> <input type="text" name="product" /></label> <br>
-        <label><fmt:message key="price" /> <input type="number" name="price"  step="0.01"/></label> <fmt:message key="rub" /><br>
-        <label><fmt:message key="quantity" /> <input type="number" name="quantity" /></label> <fmt:message key="individuals.view.pc" /> <br>
-        <input type="hidden" name="id" value="<%=request.getParameter(Constants.ID)%>" />
-        <fmt:message key="individuals.add.add" var="add"/><input type="submit" value="${add}"> <br>
-    </form>
+    <div>
+        <%
+            String defaultValidDate = getDefaultDate();
+        %>
+        <form action="${pageContext.request.contextPath}/individuals_add_shipment_result" method = "POST" target = "_parent">
+            <label><fmt:message key="date" /> <input type="date" name="date" value="<%=defaultValidDate%>" /></label> <br>
+            <label> <input type="text" name="product" placeholder="<fmt:message key="product" />"/></label> <br>
+            <label> <input type="number" name="price"  step="0.01" placeholder="<fmt:message key="price" />"/></label> <fmt:message key="rub" /><br>
+            <label> <input type="number" name="quantity" placeholder="<fmt:message key="quantity" />"/></label> <fmt:message key="individuals.view.pc" /> <br>
+            <input type="hidden" name="id" value="<%=request.getParameter(Constants.ID)%>" />
+            <fmt:message key="individuals.add.add" var="add"/><input type="submit" value="${add}"> <br>
+        </form>
+    </div>
 </body>
 </html>
 

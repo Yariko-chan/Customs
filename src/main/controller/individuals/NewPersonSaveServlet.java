@@ -18,7 +18,7 @@ import java.sql.Date;
 import static main.utils.StringUtils.isCorrectCountry;
 import static main.utils.StringUtils.isNullOrEmpty;
 
-@WebServlet(name = "NewPersonSave", urlPatterns = "/new/person/save/")
+@WebServlet(name = "NewPersonSave", urlPatterns = "/individuals_new_save")
 public class NewPersonSaveServlet extends BaseServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,6 +47,6 @@ public class NewPersonSaveServlet extends BaseServlet {
         }
 
         request.setAttribute(Constants.SAVE_RESULT, saveResult);
-        forward("/individuals_add_person_result.jsp", request, response);
+        forward("/individuals_new_save.jsp", request, response);
     }
 }

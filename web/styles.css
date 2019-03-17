@@ -1,0 +1,78 @@
+input[type=text], input[type=password], select {
+    width: 100%;
+    margin: 8px 0;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=date], input[type=number] {
+    margin: 8px 0;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    margin: 8px 0;
+    background-color: #0A64A4;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+div {
+    margin: auto;
+    width: 450px;
+    border-radius: 5px;
+    background-color: #65A5D1;
+    padding: 20px;
+}
+h1 {
+    margin: auto;
+    text-align: center;
+}
+h3 {
+    margin: auto;
+    text-align: center;
+}
+table {
+    align-content: center;
+    border: 1px;
+    border-color: #A67B00;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #FFDB73;
+}
+tr {
+    line-height: normal;
+}
+tr:nth-child(even) {
+    background-color: #FFBE00;
+}
+td {
+    border: 1px solid #FFBE00;
+    padding: 8px;
+}
+.little {
+    display: inline-block;
+    text-align: center;
+}
+.light {
+    background-color: #FFDB73;
+}
+.dark {
+    background-color: #FFBE00;
+}
+.right {
+    alignment: right;
+}
+.half {
+    width: 50%;
+}

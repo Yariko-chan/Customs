@@ -15,26 +15,31 @@
 <html>
 <head>
     <title><fmt:message key="individuals.title"/></title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <%
-        String defaultBirthDate = getDefaultBirthDate();
-    %>
-    <form action="${pageContext.request.contextPath}/new/person/save/" method = "POST" target = "_parent">
-        <label><fmt:message key="individuals.add.name" /> <input type="text" name="name" /></label> <br>
-        <label><fmt:message key="individuals.add.surname" /> <input type="text" name="surname" /> </label> <br>
-        <label><fmt:message key="individuals.add.patronymic" /> <input type="text" name="patronymic" /> </label> <br>
-        <label><fmt:message key="individuals.add.birthdate" /> <input type="date" name="birthdate" value="<%=defaultBirthDate%>"/> </label> <br>
-        <label><fmt:message key="individuals.add.passport" /> <input type="text" name="passport" /> </label> <br>
+    <div>
 
-        <label><select name="country">
-            <c:forEach items="${sorted_countries_list}" var="list">
-                <option value="${list.key}">${list.value}</option>
-            </c:forEach>
-        </select></label>
+        <%
+            String defaultBirthDate = getDefaultBirthDate();
+        %>
+        <form action="${pageContext.request.contextPath}/individuals_new_save" method = "POST" target = "_parent">
+            <label> <input type="text" name="name" placeholder="<fmt:message key="individuals.add.name" />"/></label> <br>
+            <label> <input type="text" name="surname" placeholder="<fmt:message key="individuals.add.surname" />" /> </label> <br>
+            <label> <input type="text" name="patronymic" placeholder="<fmt:message key="individuals.add.patronymic" /> " /> </label> <br>
+            <label> <fmt:message key="individuals.add.birthdate" /> <input type="date" name="birthdate" value="<%=defaultBirthDate%>"/> </label> <br>
+            <label> <input type="text" name="passport" placeholder="<fmt:message key="individuals.add.passport" />" /> </label> <br>
 
-        <fmt:message key="individuals.add.add" var="submit"/><input type="submit" value="${submit}"> <Br>
-    </form>
+            <fmt:message key="individuals.add.country" />
+            <label><select name="country">
+                <c:forEach items="${sorted_countries_list}" var="list">
+                    <option value="${list.key}">${list.value}</option>
+                </c:forEach>
+            </select></label>
+
+            <fmt:message key="individuals.add.add" var="submit"/><input type="submit" value="${submit}"> <Br>
+        </form>
+    </div>
 </body>
 </html>
 

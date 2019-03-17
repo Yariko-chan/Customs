@@ -9,15 +9,18 @@
 <html>
 <head>
     <title><fmt:message key="title"/></title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div>
 
-    <form action="${pageContext.request.contextPath}/individuals">
-        <input type="submit" value=<fmt:message key="individuals.title"/> />
-    </form>
-    <form action="${pageContext.request.contextPath}/companies">
-        <input type="submit" value=<fmt:message key="companies.title"/> />
-    </form>
+        <form action="${pageContext.request.contextPath}/individuals">
+            <input type="submit" value=<fmt:message key="individuals.title"/> />
+        </form>
+        <form action="${pageContext.request.contextPath}/companies">
+            <input type="submit" value=<fmt:message key="companies.title"/> />
+        </form>
 
+    </div>
 </body>
 </html>

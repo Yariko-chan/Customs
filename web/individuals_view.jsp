@@ -26,8 +26,10 @@
 <html>
 <head>
     <title><fmt:message key="individuals.title"/></title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div>
     <%
         Person p = (Person) request.getAttribute(PERSON);
         String from = (String) request.getAttribute(FROM);
@@ -42,46 +44,56 @@
 //      --------------SHOW PERSON INFO--------------
         if (p != null) {
             country = ServletUtils.getCountry(getServletConfig(), p.getCountry()); %>
-            <%=p.getLastName() %> <%=p.getFirstName() %> <%=p.getPatronymic() %> <br>
-            <fmt:message key="individuals.view.date"/>: <%=SdfConstants.BIRTH_DATE_FORMAT.format(p.getBirthDate())%> <br>
-            <fmt:message key="individuals.view.passport"/>: <%=p.getPassport()%> <br>
-            <fmt:message key="individuals.view.country"/>: <%=country%> <br>
+            <h3><%=p.getLastName() %> <%=p.getFirstName() %> <%=p.getPatronymic() %></h3>
+            <h5><fmt:message key="individuals.view.date"/>: <%=SdfConstants.BIRTH_DATE_FORMAT.format(p.getBirthDate())%></h5>
+            <h5><fmt:message key="individuals.view.passport"/>: <%=p.getPassport()%></h5>
+            <h5><fmt:message key="individuals.view.country"/>: <%=country%></h5>
+            <br><br>
 
             <%--SHOW SHIPMENTS IF PRESENT--%>
             <% if (personShipments != null && !personShipments.isEmpty()) { %>
-
-                <form action="${pageContext.request.contextPath}/view/person/" method = "POST" target = "_parent">
+                <h3><fmt:message key="individuals.view.shipments" /></h3> <br>
+                <form action="${pageContext.request.contextPath}/individuals_view" method = "POST" target = "_parent">
                     <input type="hidden" name="id" value="<%=p.getPersonId()%>">
-                    <label><fmt:message key="from" /><input type="date" name="from" value="<%=from%>"/></label>
-                    <label><fmt:message key="to"/><input type="date" name="to" value="<%=to%>"/></label>
-                    <fmt:message key="individuals.view.search" var="search"/><input type="submit" value="${search}"> <br>
+                    <label><fmt:message key="from"/>  <input type="date" name="from" value="<%=from%>"/></label>
+                    <label><fmt:message key="to"/>  <input type="date" name="to" value="<%=to%>"/></label>
+                    <fmt:message key="individuals.view.search" var="search"/><input type="submit" class="little" value="${search}"> <br>
                 </form>
 
+                <table>
                 <%
                     float sum = 0;
-                    for(IndividualShipment sh: personShipments) {
+                    for (IndividualShipment sh: personShipments) {
                         sum += sh.getPrice() * sh.getQuantity(); %>
-                        <%=sh.getDate()%> <%=sh.getProduct()%>
-                        <%=sh.getPrice()%> <fmt:message key="rub"/>
-                        <%=sh.getQuantity()%> <fmt:message key="individuals.view.pc"/> <br> <%
+
+                        <tr>
+                            <td><%=sh.getDate()%> </td>
+                            <td><%=sh.getProduct()%> </td>
+                            <td><%=sh.getPrice()%> <fmt:message key="rub"/> </td>
+                            <td><%=sh.getQuantity()%> <fmt:message key="individuals.view.pc"/><br> </td>
+                        </tr><%
                     }
                     String sumFormatted = String.format("%.2f", sum); %>
-                    <fmt:message key="sum"/> <%=sumFormatted%> <fmt:message key="rub"/>  <%
+                </table>
+                <br>
+                <h3 class="right"> <fmt:message key="sum"/> <%=sumFormatted%> <fmt:message key="rub"/> </h3> <%
                 }
-            %>
+                %>
 
-            <form action="${pageContext.request.contextPath}/add/shipment/">
+            <br><br><br><br>
+            <form action="${pageContext.request.contextPath}/individuals_shipment_new">
                 <input type="hidden" name="id" value="<%=p.getPersonId()%>" />
-                <input type="submit" value=<fmt:message key="individuals.view.add"/> />
+                <fmt:message key="individuals.view.add" var="add"/><input type="submit" value="${add}" />
             </form> <br>
             <%
         } else { %>
             <fmt:message key="individuals.view.error"/>
             <form action="${pageContext.request.contextPath}/individuals">
-                <input type="submit" value=<fmt:message key="individuals.view.back"/> />
+                <fmt:message key="individuals.view.back" var="back"/><input type="submit" value="${back}" />
             </form>
             <%
         }
     %>
+    </div>
 </body>
 </html>

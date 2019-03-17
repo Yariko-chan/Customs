@@ -22,8 +22,8 @@ import static main.utils.constants.Constants.*;
 import static main.utils.constants.Constants.TO;
 import static main.utils.constants.SdfConstants.INPUT_DATE_FORMAT;
 
-@WebServlet(name = "ViewPersonInfo", urlPatterns = "/view/person/")
-public class ViewPersonInfoServlet extends BaseServlet {
+@WebServlet(name = "IndividualsView", urlPatterns = "/individuals_view")
+public class IndividualsViewServlet extends BaseServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);

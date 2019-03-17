@@ -9,17 +9,20 @@
 <!DOCTYPE html>
 <html lang="${language}">
 <head>
-    <title><fmt:message key="title"/></title>
-  </head>
-  <body>
+  <title><fmt:message key="title"/></title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div>
 
-  <fmt:message key="login.welcome" /> <Br>
+    <h1><fmt:message key="login.welcome" /></h1> <Br>
 
-  <form action="login" method = "POST" target = "_parent">
-    <fmt:message key="login.login" /> <input type="text" name="login" /> <Br>
-    <fmt:message key="login.password" /> <input type="password" name="password" /> <Br>
-    <fmt:message key="login.submit" var="submit"/><input type="submit" value="${submit}"> <Br>
-  </form>
+    <form action="login" method = "POST" target = "_parent">
+      <label><input type="text" name="login" placeholder="<fmt:message key="login.login" />"/></label> <Br>
+      <label><input type="password" name="password" placeholder="<fmt:message key="login.password" />"/></label> <Br>
+      <fmt:message key="login.submit" var="submit"/><input type="submit" value="${submit}"> <Br>
+    </form>
 
-  </body>
+  </div>
+</body>
 </html>

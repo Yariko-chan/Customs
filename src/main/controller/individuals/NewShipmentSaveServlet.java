@@ -20,7 +20,7 @@ import static main.utils.NumberUtils.parseFloat;
 import static main.utils.NumberUtils.parseInt;
 import static main.utils.constants.Constants.*;
 
-@WebServlet(name = "NewShipmentSaveServlet", urlPatterns = "/add/shipment/save/")
+@WebServlet(name = "NewShipmentSaveServlet", urlPatterns = "/individuals_add_shipment_result")
 public class NewShipmentSaveServlet extends BaseServlet {
 
     @Override

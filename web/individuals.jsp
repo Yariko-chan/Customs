@@ -12,32 +12,38 @@
 <html>
 <head>
     <title><fmt:message key="individuals.title"/></title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <form action="${pageContext.request.contextPath}/new/person/">
-        <input type="submit" value=<fmt:message key="individuals.add"/> />
-    </form> <br>
+    <div>
 
-    <form action="${pageContext.request.contextPath}/individuals/search" method = "POST" target = "_parent">
-        <fmt:message key="individuals.search.label"/> <br>
-        <label> <input type="text" name="search" /> </label>
-        <fmt:message key="individuals.search" var="search"/><input type="submit" value="${search}"> <br>
-    </form>
-
-    <%
-        List<Person> persons = (List<Person>) request.getAttribute(PERSONS);
-        if (persons != null && !persons.isEmpty()) {
-            for (Person p : persons) { %>
-                <form action="${pageContext.request.contextPath}/view/person/">
-                    <%=p.getLastName() %> <%=p.getFirstName() %> <%=p.getPatronymic() %> <%=p.getPassport() %>
-                    <input type="hidden" name="id" value="<%=p.getPersonId()%>">
-                    <input type="submit" value=">" />
-                </form> <%
+        <form action="${pageContext.request.contextPath}/individuals_new">
+            <input type="submit" value=<fmt:message key="individuals.add"/> />
+        </form> <br>
+        <form action="${pageContext.request.contextPath}/individuals" method = "POST" target = "_parent">
+            <label> <input type="text" name="search" placeholder="<fmt:message key="individuals.search.hint"/>"/> </label>
+            <fmt:message key="individuals.search" var="search"/><input type="submit" class="little" value="${search}"> <br>
+        </form>
+        <table>
+        <%
+            List<Person> persons = (List<Person>) request.getAttribute(PERSONS);
+            if (persons != null && !persons.isEmpty()) {
+                for (Person p : persons) { %>
+                    <tr>
+                        <td><%=p.getLastName() %>  <%=p.getFirstName() %> <%=p.getPatronymic() %> </td>
+                        <td><%=p.getPassport() %> </td>
+                        <td><form action="${pageContext.request.contextPath}/individuals_view">
+                            <input type="hidden" name="id" value="<%=p.getPersonId()%>">
+                            <input type="submit" class="little" value=">" />
+                        </form> </td>
+                    </tr><%
+                }
+            } else { %>
+                <fmt:message key="individuals.search.empty"/> <%
             }
-        } else { %>
-            <fmt:message key="individuals.search.empty"/> <%
-        }
-    %>
+        %>
+        </table>
+</div>
 </body>
 </html>
