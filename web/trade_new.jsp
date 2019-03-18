@@ -20,8 +20,10 @@
 <html>
 <head>
     <title><fmt:message key="companies.title"/></title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css">
 </head>
 <body>
+    <div>
     <%
         TradeType type = TradeType.valueOf(request.getParameter(TYPE));
         String defaultValidDate = getDefaultDate();
@@ -54,7 +56,7 @@
             </form> <%
         }
     %>
-
+    </div>
 </body>
 </html>
 

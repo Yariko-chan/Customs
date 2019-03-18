@@ -11,25 +11,26 @@
 <html lang="${language}">
 <head>
     <title><fmt:message key="error"/></title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css">
 </head>
 <body>
-
+    <div>
     <%
         String error = (String) request.getAttribute(Constants.MSG);
     %>
-    <fmt:message key="error.msg" />
+    <h3> <fmt:message key="error.msg" />
     <%
         if (error == null) {%>
             <fmt:message key="error.unknown" />
         <% } else  {%>
             <%=error%> <%
         }
-    %>
+    %> </h3>
     <Br>
 
     <form action="${pageContext.request.contextPath}/index.jsp" method = "POST" target = "_parent">
         <fmt:message key="login.submit" var="submit"/><input type="submit" value="<fmt:message key="main" />"> <Br>
     </form>
-
+    </div>
 </body>
 </html>

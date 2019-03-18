@@ -23,7 +23,7 @@ public class ForeignCompanyDao extends Dao<ForeignCompany> {
 
     @Override
     String createSaveRequest(ForeignCompany fc) {
-        return "insert into " + getTableName() + "(name,country) " +
+        return "insert into " + getTableName() + "(fc_name,fc_country) " +
                 "values(" +
                 "\'" + fc.getName() + "\'" + "," +
                 "\'" + fc.getCountry() + "\'" + ")";
@@ -39,7 +39,7 @@ public class ForeignCompanyDao extends Dao<ForeignCompany> {
     }
 
     public DbResult<List<ForeignCompany>> searchByName(String query) {
-        String request = "SELECT * FROM " + getTableName() + " WHERE (name LIKE '" + query + "%')";
+        String request = "SELECT * FROM " + getTableName() + " WHERE (fc_name LIKE '" + query + "%')";
         return getList(request);
     }
 }

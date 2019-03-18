@@ -10,7 +10,7 @@
 <html lang="${language}">
 <head>
   <title><fmt:message key="title"/></title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css">
 </head>
 <body>
   <div>

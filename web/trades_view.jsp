@@ -18,8 +18,10 @@
 <html>
 <head>
     <title><fmt:message key="companies.title"/></title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css">
 </head>
 <body>
+    <div>
     <%
         TradeType type = (TradeType) request.getAttribute(TYPE);
         List<FullTrade> trades = (List<FullTrade>) request.getAttribute(TRADES);
@@ -33,9 +35,9 @@
     %>
     <% // header
         if (type == TradeType.EXPORT) { %>
-            <fmt:message key="export.title"/> <%
+            <h3> <fmt:message key="export.title"/> </h3> <%
         } else { %>
-            <fmt:message key="import.title"/> <%
+            <h3> <fmt:message key="import.title"/> </h3> <%
         }
     %>
     <% // date %>
@@ -46,20 +48,24 @@
             <fmt:message key="search" var="search"/><input type="submit" value="${search}"> <br>
         </form>
     <% // trades
-        if (trades != null && !trades.isEmpty()) {
+        if (trades != null && !trades.isEmpty()) { %>
+            <table> <%
             for (FullTrade t: trades) { %>
-                <%=t.getTrade().getDate()%>
-                <%=t.getForeignCompany().getName()%>
-                <%=t.getNationalCompany().getName()%>
-                <fmt:message key="contract.number"/> <%=t.getContract().getContractNumber()%>
-                <%=t.getTrade().getProduct()%>
-                <%=t.getTrade().getPrice()%> <fmt:message key="rub"/>
-                <%=t.getTrade().getQuantity()%> <fmt:message key="individuals.view.pc"/> <br> <%
-            }
+                <tr>
+                    <td><%=t.getTrade().getDate()%> </td>
+                    <td><%=t.getForeignCompany().getName()%> </td>
+                    <td><%=t.getNationalCompany().getName()%> </td>
+                    <td><fmt:message key="contract.number"/> <%=t.getContract().getContractNumber()%> </td>
+                    <td><%=t.getTrade().getProduct()%> </td>
+                    <td><%=t.getTrade().getPrice()%> <fmt:message key="rub"/> </td>
+                    <td><%=t.getTrade().getQuantity()%> <fmt:message key="individuals.view.pc"/> </td>
+                </tr> <%
+            } %>
+            </table> <%
         } else {%>
             <fmt:message key="list.empty"/> <%
         }
     %>
-
+    </div>
 </body>
 </html>

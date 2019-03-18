@@ -15,65 +15,78 @@
 <html>
 <head>
     <title><fmt:message key="companies.title"/></title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css">
 </head>
 <body>
+    <div>
+        <form action="${pageContext.request.contextPath}/companies_list">
+            <fmt:message key="companies.title" var="title"/><input type="submit" value="${title}" />
+        </form> <br>
 
-    <form action="${pageContext.request.contextPath}/companies/list/">
-        <input type="submit" value=<fmt:message key="companies.title"/> />
-    </form> <br>
-
-    <form action="${pageContext.request.contextPath}/new/trade/">
-        <fmt:message key="export.title"/>
-        <input type="hidden" name="type" value="<%=TradeType.EXPORT%>">
-        <input type="submit" value=<fmt:message key="export.add"/> />
-    </form>
+        <%--EXPORT--%>
     <%
         List<FullTrade> export = (List<FullTrade>) request.getAttribute(EXPORT);
-        if (export != null && !export.isEmpty()) {
+        if (export != null && !export.isEmpty()) { %>
+        <h3><fmt:message key="export.title"/></h3> <br>
+            <table> <%
             for (FullTrade t: export) { %>
-                <%=t.getTrade().getDate()%>
-                <%=t.getForeignCompany().getName()%>
-                <%=t.getNationalCompany().getName()%>
-                <fmt:message key="contract.number"/> <%=t.getContract().getContractNumber()%>
-                <%=t.getTrade().getProduct()%>
-                <%=t.getTrade().getPrice()%> <fmt:message key="rub"/>
-                <%=t.getTrade().getQuantity()%> <fmt:message key="individuals.view.pc"/> <br> <%
+                <tr>
+                    <td><%=t.getTrade().getDate()%> </td>
+                    <td><%=t.getForeignCompany().getName()%> </td>
+                    <td><%=t.getNationalCompany().getName()%> </td>
+                    <td><fmt:message key="contract.number"/> <%=t.getContract().getContractNumber()%> </td>
+                    <td><%=t.getTrade().getProduct()%> </td>
+                    <td><%=t.getTrade().getPrice()%> <fmt:message key="rub"/> </td>
+                    <td><%=t.getTrade().getQuantity()%> <fmt:message key="individuals.view.pc"/> </td>
+                </tr> <%
             } %>
+            </table>
 
             <form action="${pageContext.request.contextPath}/trades/view">
                 <input type="hidden" name="type" value="<%=TradeType.EXPORT%>">
-                <input type="submit" value=<fmt:message key="all"/> />
-            </form> <%
-        } else {%>
-            <fmt:message key="list.empty"/> <%
-        }
-    %> <br><br>
-
-    <form action="${pageContext.request.contextPath}/new/trade/">
-        <fmt:message key="import.title"/>
-        <input type="hidden" name="type" value="<%=TradeType.IMPORT%>">
-        <input type="submit" value=<fmt:message key="import.add"/> />
-    </form>
-    <%
-        List<FullTrade> imports = (List<FullTrade>) request.getAttribute(IMPORT);
-        if (imports != null && !imports.isEmpty()) {
-            for (FullTrade t: imports) { %>
-                <%=t.getTrade().getDate()%>
-                <%=t.getNationalCompany().getName()%>
-                <%=t.getForeignCompany().getName()%>
-                <fmt:message key="contract.number"/> <%=t.getContract().getContractNumber()%>
-                <%=t.getTrade().getProduct()%>
-                <%=t.getTrade().getPrice()%> <fmt:message key="rub"/>
-                <%=t.getTrade().getQuantity()%> <fmt:message key="individuals.view.pc"/> <br> <%
-            } %>
-
-            <form action="${pageContext.request.contextPath}/trades/view">
-                <input type="hidden" name="type" value="<%=TradeType.IMPORT%>">
-                <input type="submit" value=<fmt:message key="all"/> />
+                <fmt:message key="all" var="all"/><input type="submit" value='${all}' />
             </form> <%
         } else {%>
             <fmt:message key="list.empty"/> <%
         }
     %>
+        <form action="${pageContext.request.contextPath}/new/trade/">
+            <input type="hidden" name="type" value="<%=TradeType.EXPORT%>">
+            <fmt:message key="export.add" var="add"/><input type="submit" class="little" value="${add}" />
+        </form>
+        <br><br>
+
+        <%--IMPORT--%>
+        <h3><fmt:message key="import.title"/></h3> <br>
+    <%
+        List<FullTrade> imports = (List<FullTrade>) request.getAttribute(IMPORT);
+        if (imports != null && !imports.isEmpty()) { %>
+            <table> <%
+            for (FullTrade t: imports) { %>
+                <tr>
+                    <td><%=t.getTrade().getDate()%></td>
+                    <td><%=t.getNationalCompany().getName()%></td>
+                    <td><%=t.getForeignCompany().getName()%></td>
+                    <td><fmt:message key="contract.number"/> <%=t.getContract().getContractNumber()%></td>
+                    <td><%=t.getTrade().getProduct()%></td>
+                    <td><%=t.getTrade().getPrice()%> <fmt:message key="rub"/></td>
+                    <td><%=t.getTrade().getQuantity()%> <fmt:message key="individuals.view.pc"/></td>
+                </tr> <%
+            } %>
+            </table>
+
+            <form action="${pageContext.request.contextPath}/trades/view">
+                <input type="hidden" name="type" value="<%=TradeType.IMPORT%>">
+                <fmt:message key="all" var="all"/><input type="submit" value='${all}' />
+            </form> <%
+        } else {%>
+            <fmt:message key="list.empty"/> <%
+        }
+    %>
+        <form action="${pageContext.request.contextPath}/new/trade/">
+            <input type="hidden" name="type" value="<%=TradeType.IMPORT%>">
+            <fmt:message key="import.add" var="add"/><input type="submit" value="${add}" />
+        </form>
+    </div>
 </body>
 </html>

@@ -23,8 +23,10 @@
 <html>
 <head>
     <title><fmt:message key="companies.title"/></title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css">
 </head>
 <body>
+    <div>
     <%
         String defaultValidDate = getDefaultDate();
         String type = request.getParameter(TYPE);
@@ -70,6 +72,7 @@
                 <input type="submit" value="<fmt:message key="back" />" />
             </form> <%
         } %>
+    </div>
 </body>
 </html>
 

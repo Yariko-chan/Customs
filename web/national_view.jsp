@@ -22,15 +22,17 @@
 <html>
 <head>
     <title><fmt:message key="companies.title"/></title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css">
 </head>
 <body>
+    <div>
 
     <% // company data
         NationalCompany nc = (NationalCompany) request.getAttribute(COMPANY); %>
-        <%=nc.getName()%> <br>
-        <fmt:message key="companies.unp"/> <%=nc.getUNP()%> <br>
-        <fmt:message key="companies.license"/> <%=nc.getLicense()%>
-        <fmt:message key="companies.valid"/> <%=nc.getLicenseValidDate()%> <br> <%
+        <h1><%=nc.getName()%> </h1>
+        <h5><fmt:message key="companies.unp"/> <%=nc.getUNP()%> </h5>
+        <h5><fmt:message key="companies.license"/> <%=nc.getLicense()%> </h5>
+        <h5><fmt:message key="companies.valid"/> <%=nc.getLicenseValidDate()%> </h5> <%
     %>
 
     <br>
@@ -48,51 +50,62 @@
         <input type="hidden" name="id" value="<%=nc.getId()%>">
         <label><fmt:message key="from" /><input type="date" name="from" value="<%=from%>"/></label>
         <label><fmt:message key="to"/><input type="date" name="to" value="<%=to%>"/></label>
-        <fmt:message key="search" var="search"/><input type="submit" value="${search}"> <br>
+        <fmt:message key="search" var="search"/><input type="submit" value="${search}">
     </form>
 
     <br>
 
-    <fmt:message key="export.title"/> <br>
+    <h3> <fmt:message key="export.title"/> </h3> <br>
     <% // export list
         List<FullTrade> exports = (List<FullTrade>) request.getAttribute(EXPORT);
         float exportsSum = (float) request.getAttribute(EXPORT_SUM);
         String expSumFormatted = String.format("%.2f", exportsSum);
-        if (exports != null && !exports.isEmpty()) {
+        if (exports != null && !exports.isEmpty()) { %>
+            <table> <%
             for (FullTrade t: exports) { %>
-                <%=t.getTrade().getDate()%>
-                <%=t.getForeignCompany().getName()%>
-                <fmt:message key="contract.number"/> <%=t.getContract().getContractNumber()%>
-                <%=t.getTrade().getProduct()%>
-                <%=t.getTrade().getPrice()%> <fmt:message key="rub"/>
-                <%=t.getTrade().getQuantity()%> <fmt:message key="individuals.view.pc"/> <br> <%
+                <tr>
+                    <td><%=t.getTrade().getDate()%> </td>
+                    <td><%=t.getForeignCompany().getName()%> </td>
+                    <td><fmt:message key="contract.number"/> <%=t.getContract().getContractNumber()%> </td>
+                    <td><%=t.getTrade().getProduct()%> </td>
+                    <td><%=t.getTrade().getPrice()%> <fmt:message key="rub"/> </td>
+                    <td><%=t.getTrade().getQuantity()%> <fmt:message key="individuals.view.pc"/> </td>
+                </tr> <%
             }  %>
-            <fmt:message key="sum"/> <%=expSumFormatted%> <fmt:message key="rub"/> <br> <%
+            </table>
+            <br>
+            <h3><fmt:message key="sum"/> <%=expSumFormatted%> <fmt:message key="rub"/> </h3> <br> <%
         } else {%>
             <fmt:message key="list.empty"/> <br> <%
         }
     %>
 
-    <br>
+    <br><br><br>
 
-    <fmt:message key="import.title"/> <br>
+    <h3> <fmt:message key="import.title"/> </h3> <br>
     <% // import list
         List<FullTrade> imports = (List<FullTrade>) request.getAttribute(IMPORT);
         float importsSum = (float) request.getAttribute(IMPORT_SUM);
         String impSumFormatted = String.format("%.2f", importsSum);
-        if (imports != null && !imports.isEmpty()) {
+        if (imports != null && !imports.isEmpty()) { %>
+            <table> <%
             for (FullTrade t: imports) { %>
-                <%=t.getTrade().getDate()%>
-                <%=t.getForeignCompany().getName()%>
-                <fmt:message key="contract.number"/> <%=t.getContract().getContractNumber()%>
-                <%=t.getTrade().getProduct()%>
-                <%=t.getTrade().getPrice()%> <fmt:message key="rub"/>
-                <%=t.getTrade().getQuantity()%> <fmt:message key="individuals.view.pc"/> <br> <%
+                <tr>
+                    <td><%=t.getTrade().getDate()%> </td>
+                    <td><%=t.getForeignCompany().getName()%> </td>
+                    <td><fmt:message key="contract.number"/> <%=t.getContract().getContractNumber()%> </td>
+                    <td><%=t.getTrade().getProduct()%> </td>
+                    <td><%=t.getTrade().getPrice()%> <fmt:message key="rub"/> </td>
+                    <td><%=t.getTrade().getQuantity()%> <fmt:message key="individuals.view.pc"/> </td>
+                </tr> <%
             } %>
-            <fmt:message key="sum"/> <%=impSumFormatted%> <fmt:message key="rub"/> <br> <%
+            </table>
+            <br>
+            <h3><fmt:message key="sum"/> <%=impSumFormatted%> <fmt:message key="rub"/> </h3> <br> <%
         } else {%>
             <fmt:message key="list.empty"/> <br> <%
         }
     %>
+    </div>
 </body>
 </html>

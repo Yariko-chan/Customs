@@ -16,7 +16,7 @@ import java.util.List;
 import static main.utils.constants.Constants.FOREIGN;
 import static main.utils.constants.Constants.NATIONAL;
 
-@WebServlet(name = "CompaniesList", urlPatterns = "/companies/list/")
+@WebServlet(name = "CompaniesList", urlPatterns = "/companies_list")
 public class CompaniesListServlet extends BaseServlet {
 
     @Override

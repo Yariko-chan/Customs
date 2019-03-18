@@ -18,39 +18,44 @@
 <html>
 <head>
     <title><fmt:message key="companies.title"/></title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css">
 </head>
 <body>
+    <div>
 
     <%--NATIONAL COMPANIES--%>
 
-    <form action="${pageContext.request.contextPath}/new/national/">
-        <fmt:message key="companies.national"/>
-        <input type="submit" value=<fmt:message key="add"/> />
-    </form>
+    <h3><fmt:message key="companies.national"/></h3>
 
     <form action="${pageContext.request.contextPath}/national/search" method = "POST" target = "_parent">
-        <fmt:message key="companies.national.search"/> <br>
-        <label> <input type="text" name="search" /> </label>
+        <label> <input type="text" name="search" placeholder="<fmt:message key="companies.national.search"/>" /> </label>
         <fmt:message key="search" var="search"/><input type="submit" value="${search}"> <br>
     </form>
 
     <%
         List<NationalCompany> nationalCompanies = (List<NationalCompany>) request.getAttribute(NATIONAL);
-        if (nationalCompanies != null && !nationalCompanies.isEmpty()) {
+        if (nationalCompanies != null && !nationalCompanies.isEmpty()) { %>
+            <table> <%
             for (NationalCompany nc: nationalCompanies) { %>
-                <form action="${pageContext.request.contextPath}/view/national">
-                    <%=nc.getName()%> <fmt:message key="companies.unp"/> <%=nc.getUNP()%>
-                    <fmt:message key="companies.license"/> <%=nc.getLicense()%>
-                    <fmt:message key="companies.valid"/> <%=nc.getLicenseValidDate()%>
-                    <input type="hidden" name="id" value="<%=nc.getId()%>">
-                    <input type="submit" value=">" />
-                </form> <%
-
-            }
+                <tr>
+                    <td> <%=nc.getName()%> </td>
+                    <td> <fmt:message key="companies.unp"/> <%=nc.getUNP()%> </td>
+                    <td> <fmt:message key="companies.license"/> <%=nc.getLicense()%> </td>
+                    <td> <fmt:message key="companies.valid"/> <%=nc.getLicenseValidDate()%> </td>
+                    <td> <form action="${pageContext.request.contextPath}/view/national">
+                        <input type="hidden" name="id" value="<%=nc.getId()%>">
+                        <input type="submit" value=">" />
+                    </form> </td>
+                </tr><%
+            } %>
+            </table> <%
         } else { %>
             <fmt:message key="individuals.search.empty"/> <%
         }
     %>
+    <form action="${pageContext.request.contextPath}/new/national/">
+        <input type="submit" value=<fmt:message key="add"/> />
+    </form>
 
     <br>
     <br>
@@ -58,33 +63,36 @@
 
     <%--FOREIGN COMPANIES--%>
 
-    <form action="${pageContext.request.contextPath}/new/foreign/">
-        <fmt:message key="companies.foreign"/>
-        <input type="submit" value=<fmt:message key="add"/> />
-    </form>
+    <h3><fmt:message key="companies.foreign"/></h3>
 
     <form action="${pageContext.request.contextPath}/foreign/search" method = "POST" target = "_parent">
-        <fmt:message key="companies.foreign.search"/> <br>
-        <label> <input type="text" name="search" /> </label>
+        <label> <input type="text" name="search" placeholder="<fmt:message key="companies.foreign.search"/>" /> </label>
         <fmt:message key="search" var="search"/><input type="submit" value="${search}"> <br>
     </form>
 
     <%
         List<ForeignCompany> foreignCompanies = (List<ForeignCompany>) request.getAttribute(FOREIGN);
-        if (foreignCompanies != null && !foreignCompanies.isEmpty()) {
+        if (foreignCompanies != null && !foreignCompanies.isEmpty()) { %>
+            <table> <%
             for (ForeignCompany fc: foreignCompanies) {
                 String country = ServletUtils.getCountry(getServletConfig(), fc.getCountry()); %>
-                <form action="${pageContext.request.contextPath}/view/foreign">
-                    <%=fc.getName()%> <%=country%>
-                    <input type="hidden" name="id" value="<%=fc.getId()%>">
-                    <input type="submit" value=">" />
-                </form> <%
-
-            }
+                <tr>
+                    <td> <%=fc.getName()%> </td>
+                    <td> <%=country%> </td>
+                    <td> <form action="${pageContext.request.contextPath}/view/foreign">
+                        <input type="hidden" name="id" value="<%=fc.getId()%>">
+                        <input type="submit" value=">" />
+                    </form> </td>
+                </tr> <%
+            } %>
+            </table> <%
         } else { %>
             <fmt:message key="individuals.search.empty"/> <%
         }
     %>
-
+    <form action="${pageContext.request.contextPath}/new/foreign/">
+        <input type="submit" value=<fmt:message key="add"/> />
+    </form>
+    </div>
 </body>
 </html>

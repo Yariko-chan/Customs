@@ -15,6 +15,7 @@
 <html>
 <head>
     <title><fmt:message key="companies.title"/></title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css">
 </head>
 <body>
     <form action="${pageContext.request.contextPath}/new/foreign/save/" method = "POST" target = "_parent">
