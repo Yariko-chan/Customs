@@ -25,6 +25,7 @@ public class DbConstants {
     public static final String BIRTH_DATE = "birth_date";
     public static final String PASSPORT = "passport";
     public static final String COUNTRY = "country";
+    public static final String DESCRIPTION = "description";
 
     public static final String INDIVIDUAL_SHIPMENTS = "individual_shipments";
     public static final String DATE = "date";

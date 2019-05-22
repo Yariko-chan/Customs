@@ -10,20 +10,24 @@ public class Person {
     private Date birthDate = new Date(-1);
     private String passport = "";
     private String country = "";
+    private String description = "";
 
     public Person() {
     }
 
-    public Person(String firstName, String lastName, String patronymic, Date birthDate, String passport, String country) {
+    public Person(String firstName, String lastName, String patronymic,
+                  Date birthDate, String passport, String country, String description) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.patronymic = patronymic;
         this.birthDate = birthDate;
         this.passport = passport;
         this.country = country;
+        this.description = description;
     }
 
-    public Person(int personId, String firstName, String lastName, String patronymic, Date birthDate, String passport, String country) {
+    public Person(int personId, String firstName, String lastName, String patronymic,
+                  Date birthDate, String passport, String country, String description) {
         this.personId = personId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -31,6 +35,7 @@ public class Person {
         this.birthDate = birthDate;
         this.passport = passport;
         this.country = country;
+        this.description = description;
     }
 
     public int getPersonId() {
@@ -87,5 +92,13 @@ public class Person {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -23,14 +23,15 @@ class PersonDao extends Dao<Person> {
 
     @Override
     String createSaveRequest(Person p) {
-        return "insert into person(first_name, last_name, patronymic, birth_date, passport, country) " +
+        return "insert into person(first_name, last_name, patronymic, birth_date, passport, country, description) " +
                 "values(" +
                 "\'" + p.getFirstName() + "\'" + "," +
                 "\'" + p.getLastName() + "\'" + "," +
                 "\'" + p.getPatronymic() + "\'" + "," +
                 "\'" + p.getBirthDate() + "\'" + "," +
                 "\'" + p.getPassport() + "\'" + "," +
-                "\'" + p.getCountry() + "\'" + ")";
+                "\'" + p.getCountry() + "\'" + "," +
+                "\'" + p.getDescription() + "\'" + ")";
     }
 
     @Override
@@ -42,7 +43,8 @@ class PersonDao extends Dao<Person> {
                 rs.getString(PATRONYMIC),
                 rs.getDate(BIRTH_DATE),
                 rs.getString(PASSPORT),
-                rs.getString(COUNTRY));
+                rs.getString(COUNTRY),
+                rs.getString(DESCRIPTION));
     }
 
     DbResult<List<Person>> searchByName(String name) {

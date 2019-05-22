@@ -34,12 +34,13 @@ public class NewPersonSaveServlet extends BaseServlet {
         Date birthdate = DateUtils.parseSqlDate(request.getParameter("birthdate"));
         String passport = request.getParameter("passport");
         String country = request.getParameter("country");
+        String description = request.getParameter("description");
         if (isNullOrEmpty(name) || isNullOrEmpty(surname) || isNullOrEmpty(patronymic) ||
-                DateUtils.isNullOrEmpty(birthdate) || isNullOrEmpty(passport) ||
+                DateUtils.isNullOrEmpty(birthdate) || isNullOrEmpty(passport) || isNullOrEmpty(description) ||
                 !isCorrectCountry(request.getServletContext(), country)) {
             saveResult.setInputError();
         } else {
-            Person p = new Person(name, surname, patronymic, birthdate, passport, country);
+            Person p = new Person(name, surname, patronymic, birthdate, passport, country, description);
             DbResult<Boolean> dbResult = Database.getInstance().savePerson(p);
             if (dbResult.isAnyError() || !dbResult.value()) {
                 saveResult.setSavingError();

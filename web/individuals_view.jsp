@@ -48,6 +48,7 @@
             <h5><fmt:message key="individuals.view.date"/>: <%=SdfConstants.BIRTH_DATE_FORMAT.format(p.getBirthDate())%></h5>
             <h5><fmt:message key="individuals.view.passport"/>: <%=p.getPassport()%></h5>
             <h5><fmt:message key="individuals.view.country"/>: <%=country%></h5>
+        <h5><fmt:message key="individuals.add.description"/>: <%=p.getDescription()%></h5>
             <br><br>
 
             <%--SHOW SHIPMENTS IF PRESENT--%>

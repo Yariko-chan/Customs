@@ -29,6 +29,7 @@
             <label> <input type="text" name="patronymic" placeholder="<fmt:message key="individuals.add.patronymic" /> " /> </label> <br>
             <label> <fmt:message key="individuals.add.birthdate" /> <input type="date" name="birthdate" value="<%=defaultBirthDate%>"/> </label> <br>
             <label> <input type="text" name="passport" placeholder="<fmt:message key="individuals.add.passport" />" /> </label> <br>
+            <label> <input type="text" name="description" placeholder="<fmt:message key="individuals.add.description" />" /> </label> <br>
 
             <fmt:message key="individuals.add.country" />
             <label><select name="country">
